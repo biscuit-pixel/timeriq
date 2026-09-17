@@ -865,3 +865,11 @@ input {
   width: 100vw;
   background: var(--bg-0);
 }
+
+.app-footer {
+  text-align: center;
+  padding: 4px 18px 28px;
+  font-size: 11.5px;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}

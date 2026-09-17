@@ -54,6 +54,8 @@ export function ControlPage() {
           <SettingsPanel />
         </div>
       </main>
+
+      <footer className="app-footer">{t('footer.madeBy')}</footer>
     </div>
   )
 }

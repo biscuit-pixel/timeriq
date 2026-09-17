@@ -2,6 +2,8 @@
 
 A sleek, offline-capable presentation timer for conferences, talks, and events. Built as a PWA (React + TypeScript + Vite) so it runs equally well as a hosted web app, installed offline app, or opened straight from a local build — no backend required.
 
+Made by **møušn**.
+
 ## Features
 
 - **English / Slovak** UI, switchable at any time
@@ -47,3 +49,8 @@ Everything is client-side and stored in the browser's `localStorage` — there i
 ## Deployment
 
 Static build (`npm run build` → `dist/`), deployable anywhere that serves static files. Configured for Cloudflare Pages (`public/_redirects` handles SPA routing).
+
+## Documentation
+
+- [User guide (English)](./docs/USAGE.en.md)
+- [Používateľská príručka (slovenčina)](./docs/USAGE.sk.md)

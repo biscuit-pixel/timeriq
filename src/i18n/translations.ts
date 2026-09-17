@@ -87,6 +87,9 @@ export const translations = {
       minutes: 'm',
       seconds: 's',
     },
+    footer: {
+      madeBy: 'Made by møušn',
+    },
   },
   sk: {
     appName: 'TimerIQ',
@@ -175,6 +178,9 @@ export const translations = {
       hours: 'h',
       minutes: 'm',
       seconds: 's',
+    },
+    footer: {
+      madeBy: 'Vytvoril møušn',
     },
   },
 } as const
