@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from '../i18n/useTranslation'
 
 const MonitorIcon = () => (
@@ -26,11 +26,7 @@ declare global {
 
 export function OutputLauncher() {
   const { t } = useTranslation()
-  const [multiScreenSupported, setMultiScreenSupported] = useState(false)
-
-  useEffect(() => {
-    setMultiScreenSupported(typeof window.getScreenDetails === 'function')
-  }, [])
+  const [multiScreenSupported] = useState(() => typeof window.getScreenDetails === 'function')
 
   const openPlain = () => {
     window.open('/output', 'timeriq-output', 'width=1280,height=720,menubar=no,toolbar=no,location=no')
