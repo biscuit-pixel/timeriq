@@ -48,7 +48,7 @@ Everything is client-side and stored in the browser's `localStorage` — there i
 
 ## Deployment
 
-Static build (`npm run build` → `dist/`), deployable anywhere that serves static files. Configured for Cloudflare Pages (`public/_redirects` handles SPA routing).
+Static build (`npm run build` → `dist/`), deployable anywhere that serves static files. Configured for Cloudflare Workers static assets (`wrangler.jsonc`, SPA fallback via `not_found_handling`) — connect the repo under **Workers & Pages → Create → Connect to Git** for auto-deploy on push, or run `npm run deploy` locally with `wrangler` authenticated.
 
 ## Documentation
 
