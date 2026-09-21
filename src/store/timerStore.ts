@@ -59,6 +59,8 @@ interface TimerStore extends TimerIQState {
   duplicateItem: (id: string) => void
   updateSettings: (patch: Partial<Settings>) => void
   updateVisual: (patch: Partial<Settings['visual']>) => void
+  setPlaylistEnabled: (enabled: boolean) => void
+  updateSingle: (patch: Partial<Settings['single']>) => void
   addThreshold: (t: Omit<WarningThreshold, 'id'>) => void
   updateThreshold: (id: string, patch: Partial<WarningThreshold>) => void
   removeThreshold: (id: string) => void
@@ -67,8 +69,14 @@ interface TimerStore extends TimerIQState {
   requestSync: () => void
 }
 
-function currentItem(state: Pick<TimerStore, 'playlist' | 'run'>) {
-  return state.playlist[state.run.currentIndex] ?? null
+/** The list the run state walks through: the full playlist, or just the single timer when playlist mode is off. */
+export function activePlaylist(state: Pick<TimerIQState, 'playlist' | 'settings'>): PlaylistItem[] {
+  if (state.settings.playlistEnabled) return state.playlist
+  return [{ id: 'single', type: 'timer', label: state.settings.single.label, durationMs: state.settings.single.durationMs }]
+}
+
+function currentItem(state: Pick<TimerIQState, 'playlist' | 'settings' | 'run'>) {
+  return activePlaylist(state)[state.run.currentIndex] ?? null
 }
 
 function broadcastState(get: () => TimerStore) {
@@ -91,7 +99,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   run: {
     phase: 'idle',
     currentIndex: 0,
-    remainingMs: initial.playlist[0]?.durationMs ?? 0,
+    remainingMs: activePlaylist(initial)[0]?.durationMs ?? 0,
     endTimestamp: null,
   },
   isControlSource: true,
@@ -129,7 +137,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
 
   goTo: (index: number) => {
     const s = get()
-    const item = s.playlist[index]
+    const item = activePlaylist(s)[index]
     if (!item) return
     set({ run: { phase: 'idle', currentIndex: index, endTimestamp: null, remainingMs: item.durationMs } })
     broadcastState(get)
@@ -138,7 +146,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   skipNext: () => {
     const s = get()
     const nextIndex = s.run.currentIndex + 1
-    if (nextIndex >= s.playlist.length) return
+    if (nextIndex >= activePlaylist(s).length) return
     get().goTo(nextIndex)
   },
 
@@ -156,7 +164,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
     if (Date.now() < s.run.endTimestamp) return
 
     const nextIndex = s.run.currentIndex + 1
-    const next = s.playlist[nextIndex]
+    const next = activePlaylist(s)[nextIndex]
     if (next) {
       set({ run: { phase: 'running', currentIndex: nextIndex, endTimestamp: Date.now() + next.durationMs, remainingMs: next.durationMs } })
     } else {
@@ -245,6 +253,29 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   updateVisual: (patch) => {
     const s = get()
     set({ settings: { ...s.settings, visual: { ...s.settings.visual, ...patch } } })
+    persist(get)
+    broadcastState(get)
+  },
+
+  setPlaylistEnabled: (enabled) => {
+    const s = get()
+    const settings = { ...s.settings, playlistEnabled: enabled }
+    const first = activePlaylist({ playlist: s.playlist, settings })[0]
+    set({
+      settings,
+      run: { phase: 'idle', currentIndex: 0, endTimestamp: null, remainingMs: first?.durationMs ?? 0 },
+    })
+    persist(get)
+    broadcastState(get)
+  },
+
+  updateSingle: (patch) => {
+    const s = get()
+    const single = { ...s.settings.single, ...patch }
+    set({ settings: { ...s.settings, single } })
+    if (!s.settings.playlistEnabled && s.run.phase === 'idle' && patch.durationMs !== undefined) {
+      set({ run: { ...get().run, remainingMs: patch.durationMs } })
+    }
     persist(get)
     broadcastState(get)
   },

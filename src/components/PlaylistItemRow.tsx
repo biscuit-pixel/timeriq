@@ -1,8 +1,7 @@
-import { useState } from 'react'
 import { useTranslation } from '../i18n/useTranslation'
 import { useTimerStore } from '../store/timerStore'
 import type { PlaylistItem } from '../store/types'
-import { clockInputToMs, formatDuration, msToClockInput } from '../utils/time'
+import { DurationInput } from './DurationInput'
 
 interface Props {
   item: PlaylistItem
@@ -30,15 +29,6 @@ export function PlaylistItemRow({ item, index, isCurrent, isPast, onDragStart, o
   const removeItem = useTimerStore((s) => s.removeItem)
   const duplicateItem = useTimerStore((s) => s.duplicateItem)
   const goTo = useTimerStore((s) => s.goTo)
-  const [editingDuration, setEditingDuration] = useState(false)
-  const [durationDraft, setDurationDraft] = useState(() => msToClockInput(item.durationMs))
-
-  const commitDuration = () => {
-    const ms = clockInputToMs(durationDraft)
-    if (ms > 0) updateItem(item.id, { durationMs: ms })
-    else setDurationDraft(msToClockInput(item.durationMs))
-    setEditingDuration(false)
-  }
 
   return (
     <li
@@ -63,20 +53,11 @@ export function PlaylistItemRow({ item, index, isCurrent, isPast, onDragStart, o
         value={item.label}
         onChange={(e) => updateItem(item.id, { label: e.target.value })}
       />
-      {editingDuration ? (
-        <input
-          autoFocus
-          className="text-input text-input--duration"
-          value={durationDraft}
-          onChange={(e) => setDurationDraft(e.target.value)}
-          onBlur={commitDuration}
-          onKeyDown={(e) => e.key === 'Enter' && commitDuration()}
-        />
-      ) : (
-        <button className="duration-chip" onClick={() => setEditingDuration(true)}>
-          {formatDuration(item.durationMs)}
-        </button>
-      )}
+      <DurationInput
+        valueMs={item.durationMs}
+        onChange={(ms) => updateItem(item.id, { durationMs: ms })}
+        ariaLabel={t('playlist.duration')}
+      />
       <button className="icon-btn" onClick={() => duplicateItem(item.id)} title={t('playlist.duplicate')}>
         <DuplicateIcon />
       </button>

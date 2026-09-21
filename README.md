@@ -1,4 +1,4 @@
-# TimerIQ
+# timeriq
 
 A sleek, offline-capable presentation timer for conferences, talks, and events. Built as a PWA (React + TypeScript + Vite) so it runs equally well as a hosted web app, installed offline app, or opened straight from a local build — no backend required.
 
@@ -11,11 +11,14 @@ Made by **møušn**.
 - **Space** to play/pause, **Esc** to reset the current segment, arrow keys to skip
 - Animated progress bar / ring showing time remaining
 - **Configurable warning thresholds** — the display changes accent color (and can pulse) as time runs low; edit the trigger points, colors and labels in Settings
+- **Single timer mode** — switch the playlist off for one simple timer
+- **Keyboard-driven duration editing** — ←/→ pick a digit, ↑/↓ change it
+- **Animated particle background** that follows the warning color
 - **Playlist / queue** — chain multiple timed segments and breaks back to back, reorder by drag-and-drop, jump to any segment
 - **Dual-screen control + output mode** — open a second window (optionally auto-placed on a second monitor via the Window Management API) that mirrors the control panel in real time over `BroadcastChannel`; the operator can drive playback from either window
 - **Dark mode by default**, with a light mode toggle
 - Optional **clock** overlay on the output screen
-- Optional **logo upload** (auto-downscaled, stored locally) with position control, for branding per event
+- Optional **logo upload** (auto-downscaled, stored locally) with position and size control, for branding per event
 - Visual customization: accent color, font, progress style, background style
 
 ## Getting started

@@ -1,5 +1,6 @@
 import { useTranslation } from '../i18n/useTranslation'
 import { useTimerStore } from '../store/timerStore'
+import { useActiveItems } from '../hooks/useActiveItems'
 import type { RunPhase } from '../store/types'
 
 const PlayIcon = () => (
@@ -21,15 +22,19 @@ const NextIcon = () => (
 export function ControlBar() {
   const { t } = useTranslation()
   const phase: RunPhase = useTimerStore((s) => s.run.phase)
+  const playlistEnabled = useTimerStore((s) => s.settings.playlistEnabled)
   const canPrev = useTimerStore((s) => s.run.currentIndex > 0)
-  const canNext = useTimerStore((s) => s.run.currentIndex < s.playlist.length - 1)
+  const { list } = useActiveItems()
+  const canNext = useTimerStore((s) => s.run.currentIndex < list.length - 1)
   const { toggle, reset, skipNext, skipPrev } = useTimerStore()
 
   return (
     <div className="control-bar">
-      <button className="ctrl-btn ctrl-btn--ghost" onClick={skipPrev} disabled={!canPrev} title={t('control.prev')}>
-        <PrevIcon />
-      </button>
+      {playlistEnabled && (
+        <button className="ctrl-btn ctrl-btn--ghost" onClick={skipPrev} disabled={!canPrev} title={t('control.prev')}>
+          <PrevIcon />
+        </button>
+      )}
       <button className="ctrl-btn ctrl-btn--primary" onClick={toggle}>
         {phase === 'running' ? <PauseIcon /> : <PlayIcon />}
         <span>{phase === 'running' ? t('control.pause') : t('control.play')}</span>
@@ -37,9 +42,11 @@ export function ControlBar() {
       <button className="ctrl-btn ctrl-btn--ghost" onClick={reset} title={t('control.reset')}>
         <ResetIcon />
       </button>
-      <button className="ctrl-btn ctrl-btn--ghost" onClick={skipNext} disabled={!canNext} title={t('control.next')}>
-        <NextIcon />
-      </button>
+      {playlistEnabled && (
+        <button className="ctrl-btn ctrl-btn--ghost" onClick={skipNext} disabled={!canNext} title={t('control.next')}>
+          <NextIcon />
+        </button>
+      )}
       <div className="control-hint">{t('control.shortcuts')}</div>
     </div>
   )

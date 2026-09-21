@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg'],
       manifest: {
-        name: 'TimerIQ — Presentation Timer',
-        short_name: 'TimerIQ',
+        name: 'timeriq — presentation timer',
+        short_name: 'timeriq',
         description: 'A sleek, offline-capable presentation timer with dual-screen control/output mode.',
         theme_color: '#0b0c10',
         background_color: '#0b0c10',

@@ -1,6 +1,6 @@
 import { useTranslation } from '../i18n/useTranslation'
 import { useTimerStore } from '../store/timerStore'
-import { clockInputToMs, msToClockInput } from '../utils/time'
+import { DurationInput } from './DurationInput'
 
 export function ThresholdEditor() {
   const { t } = useTranslation()
@@ -14,11 +14,11 @@ export function ThresholdEditor() {
       <p className="field-hint">{t('settings.warningsHint')}</p>
       {thresholds.map((th) => (
         <div className="threshold-row" key={th.id}>
-          <input
-            className="text-input text-input--duration"
-            value={msToClockInput(th.atMs)}
-            title={t('settings.thresholdAt')}
-            onChange={(e) => updateThreshold(th.id, { atMs: clockInputToMs(e.target.value) })}
+          <DurationInput
+            valueMs={th.atMs}
+            minMs={1000}
+            ariaLabel={t('settings.thresholdAt')}
+            onChange={(ms) => updateThreshold(th.id, { atMs: ms })}
           />
           <input
             type="color"

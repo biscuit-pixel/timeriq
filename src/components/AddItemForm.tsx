@@ -1,21 +1,21 @@
 import { useState } from 'react'
 import { useTranslation } from '../i18n/useTranslation'
 import { useTimerStore } from '../store/timerStore'
-import { clockInputToMs } from '../utils/time'
+import { DurationInput } from './DurationInput'
 
 export function AddItemForm() {
   const { t } = useTranslation()
   const addItem = useTimerStore((s) => s.addItem)
   const breakDefaultMs = useTimerStore((s) => s.settings.breakDefaultMs)
   const [label, setLabel] = useState('')
-  const [duration, setDuration] = useState('5:00')
+  const [durationMs, setDurationMs] = useState(5 * 60 * 1000)
 
   const submit = (type: 'timer' | 'break') => {
-    const ms = type === 'break' && !label ? breakDefaultMs : clockInputToMs(duration)
+    const ms = type === 'break' && !label ? breakDefaultMs : durationMs
     const fallbackLabel = type === 'timer' ? 'New segment' : 'Break'
-    addItem(type, label.trim() || fallbackLabel, ms || 5 * 60 * 1000)
+    addItem(type, label.trim() || fallbackLabel, ms)
     setLabel('')
-    setDuration('5:00')
+    setDurationMs(5 * 60 * 1000)
   }
 
   return (
@@ -32,13 +32,7 @@ export function AddItemForm() {
         value={label}
         onChange={(e) => setLabel(e.target.value)}
       />
-      <input
-        className="text-input text-input--duration"
-        placeholder="mm:ss"
-        value={duration}
-        onChange={(e) => setDuration(e.target.value)}
-        inputMode="numeric"
-      />
+      <DurationInput valueMs={durationMs} onChange={setDurationMs} ariaLabel={t('playlist.duration')} />
       <button type="submit" className="ctrl-btn ctrl-btn--primary ctrl-btn--sm">
         {t('playlist.addTimer')}
       </button>

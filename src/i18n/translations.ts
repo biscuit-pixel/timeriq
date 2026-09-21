@@ -1,7 +1,6 @@
 export const translations = {
   en: {
-    appName: 'TimerIQ',
-    tagline: 'Presentation timer for people who care how it looks.',
+    appName: 'timeriq',
     nav: {
       control: 'Control',
       settings: 'Settings',
@@ -17,7 +16,7 @@ export const translations = {
       prev: 'Previous',
       up: 'Sooner',
       shortcuts: 'Space: play/pause · Esc: reset current',
-      finished: 'Playlist complete',
+      finished: 'Finished',
       idle: 'Ready',
       running: 'Running',
       paused: 'Paused',
@@ -41,6 +40,9 @@ export const translations = {
       break: 'Break',
       current: 'Now',
       totalDuration: 'Total',
+      mode: 'Mode',
+      modePlaylist: 'Playlist',
+      modeSingle: 'Single timer',
     },
     settings: {
       title: 'Settings',
@@ -66,6 +68,8 @@ export const translations = {
       uploadLogo: 'Upload logo',
       removeLogo: 'Remove logo',
       logoPosition: 'Logo position',
+      logoScale: 'Logo size',
+      particles: 'Animated particles',
       positionTopLeft: 'Top left',
       positionTopRight: 'Top right',
       positionBottomLeft: 'Bottom left',
@@ -92,8 +96,7 @@ export const translations = {
     },
   },
   sk: {
-    appName: 'TimerIQ',
-    tagline: 'Časovač na prezentácie pre tých, ktorým záleží na vzhľade.',
+    appName: 'timeriq',
     nav: {
       control: 'Ovládanie',
       settings: 'Nastavenia',
@@ -109,7 +112,7 @@ export const translations = {
       prev: 'Späť',
       up: 'Skôr',
       shortcuts: 'Medzerník: spustiť/pozastaviť · Esc: reset aktuálneho',
-      finished: 'Playlist dokončený',
+      finished: 'Dokončené',
       idle: 'Pripravené',
       running: 'Beží',
       paused: 'Pozastavené',
@@ -133,6 +136,9 @@ export const translations = {
       break: 'Prestávka',
       current: 'Teraz',
       totalDuration: 'Spolu',
+      mode: 'Režim',
+      modePlaylist: 'Playlist',
+      modeSingle: 'Jeden časovač',
     },
     settings: {
       title: 'Nastavenia',
@@ -158,6 +164,8 @@ export const translations = {
       uploadLogo: 'Nahrať logo',
       removeLogo: 'Odstrániť logo',
       logoPosition: 'Pozícia loga',
+      logoScale: 'Veľkosť loga',
+      particles: 'Animované častice',
       positionTopLeft: 'Vľavo hore',
       positionTopRight: 'Vpravo hore',
       positionBottomLeft: 'Vľavo dole',

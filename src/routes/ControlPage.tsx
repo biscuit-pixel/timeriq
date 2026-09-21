@@ -3,6 +3,8 @@ import { useTimerStore } from '../store/timerStore'
 import { useAutoAdvance } from '../hooks/useAutoAdvance'
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 import { useLiveRemaining } from '../hooks/useLiveRemaining'
+import { useActiveItems } from '../hooks/useActiveItems'
+import { SingleTimerPanel } from '../components/SingleTimerPanel'
 import { ControlBar } from '../components/ControlBar'
 import { OutputLauncher } from '../components/OutputLauncher'
 import { LanguageSwitcher } from '../components/LanguageSwitcher'
@@ -16,23 +18,17 @@ export function ControlPage() {
   useAutoAdvance()
   useKeyboardShortcuts(true)
 
-  const playlist = useTimerStore((s) => s.playlist)
   const run = useTimerStore((s) => s.run)
   const settings = useTimerStore((s) => s.settings)
   const remainingMs = useLiveRemaining(run)
-
-  const item = playlist[run.currentIndex] ?? null
-  const nextItem = playlist[run.currentIndex + 1] ?? null
+  const { item, nextItem } = useActiveItems()
 
   return (
     <div className="app-shell" data-theme={settings.visual.theme}>
       <header className="app-header">
         <div className="app-brand">
           <img src="/icon.svg" alt="" className="app-brand-mark" />
-          <div>
-            <h1>{t('appName')}</h1>
-            <p>{t('tagline')}</p>
-          </div>
+          <h1>{t('appName')}</h1>
         </div>
         <div className="app-header-actions">
           <LanguageSwitcher />
@@ -50,7 +46,7 @@ export function ControlPage() {
         </div>
 
         <div className="side-column">
-          <PlaylistEditor />
+          {settings.playlistEnabled ? <PlaylistEditor /> : <SingleTimerPanel />}
           <SettingsPanel />
         </div>
       </main>

@@ -1,8 +1,8 @@
-# TimerIQ — User Guide
+# timeriq — User Guide
 
 *Slovenská verzia: [USAGE.sk.md](./USAGE.sk.md)*
 
-TimerIQ is a presentation timer that runs entirely in your browser (or as an installed offline app). There is no account, no server, and no data ever leaves your device — everything is stored locally.
+timeriq is a presentation timer that runs entirely in your browser (or as an installed offline app). There is no account, no server, and no data ever leaves your device — everything is stored locally.
 
 ## Quick start
 
@@ -24,17 +24,25 @@ These work in either the control window or the output window (if the output wind
 
 Shortcuts are ignored while you're typing in a text field.
 
+## Editing times with the keyboard
+
+Every duration field (playlist rows, the add form, warning thresholds, default break, single timer) is a keyboard-driven `mm:ss` editor. Click it (or Tab to it), then use `←` / `→` to choose the digit, `↑` / `↓` to add or subtract at that digit (it carries over, e.g. `0:59` + 1 s = `1:00`), or type a number to overwrite the selected digit. `Enter` / `Esc` leaves the field.
+
+## Single timer mode
+
+Don't need an agenda? Use the **Playlist / Single timer** switch above the list. Single timer mode shows just one label and one duration, hides skip buttons and "up next", and stops when it reaches zero. Your playlist is kept and comes back when you switch back.
+
 ## Playlist
 
 Each row is either a **timer** (a talk, a segment, a session) or a **break**. You can:
 
-- **Add** a timer or break using the form at the bottom of the playlist (type a label and a duration as `mm:ss`, e.g. `12:30`).
+- **Add** a timer or break using the form at the bottom of the playlist (type a label and set the duration).
 - **Reorder** by dragging the handle on the left of a row.
-- **Edit** the label inline, or click the duration chip to type a new one.
+- **Edit** the label inline, or edit the duration with the keyboard (see above).
 - **Duplicate** or **remove** a segment with the icon buttons.
 - **Jump** to any segment by clicking its position number.
 
-When a running segment reaches zero, TimerIQ automatically moves on to the next item in the list and keeps running — so a whole agenda (talk → break → talk → …) can flow unattended once started. The control window needs to stay open for auto-advance to keep working; the output window is just a mirror.
+When a running segment reaches zero, timeriq automatically moves on to the next item in the list and keeps running — so a whole agenda (talk → break → talk → …) can flow unattended once started. The control window needs to stay open for auto-advance to keep working; the output window is just a mirror.
 
 ## Warning thresholds (color changes)
 
@@ -52,17 +60,17 @@ In **Settings → Warning thresholds** you define one or more trigger points, e.
 In **Settings** you can set:
 
 - **Theme** — dark (default) or light.
-- **Accent color**, **font** (clean sans or monospace), **progress style** (bar, ring, or both), **background** (solid or gradient).
+- **Accent color**, **font** (clean sans or monospace), **progress style** (bar, ring, or both), **background** (solid or gradient), and **animated particles** that drift behind the timer (they take on the warning color too).
 - **Clock** — show the current time on the output screen, 24h or 12h.
-- **Logo** — upload an image (it's downscaled and stored locally); choose which corner it sits in, or center it for an idle/waiting screen.
+- **Logo** — upload an image (it's downscaled and stored locally); choose which corner it sits in (or center it), and scale it with the **Logo size** slider.
 
 ## Offline use
 
-TimerIQ is a Progressive Web App. After your first visit, it keeps working with no internet connection. To install it as a standalone app: use your browser's "Install app" / "Add to Home screen" option (usually in the address bar or browser menu).
+timeriq is a Progressive Web App. After your first visit, it keeps working with no internet connection. To install it as a standalone app: use your browser's "Install app" / "Add to Home screen" option (usually in the address bar or browser menu).
 
 ## Data & privacy
 
-Your playlist and settings are stored in your browser's local storage, on your device only. Clearing your browser's site data for TimerIQ (or using **Settings → Reset all data**) removes everything.
+Your playlist and settings are stored in your browser's local storage, on your device only. Clearing your browser's site data for timeriq (or using **Settings → Reset all data**) removes everything.
 
 ---
 Made by **møušn**.

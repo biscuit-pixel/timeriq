@@ -19,10 +19,14 @@ export const defaultSettings: Settings = {
     clockFormat: '24h',
     logoDataUrl: null,
     logoPosition: 'top-right',
+    logoScale: 1,
     backgroundStyle: 'gradient',
+    particles: true,
   },
   warningThresholds: defaultThresholds,
   breakDefaultMs: 10 * 60 * 1000,
+  playlistEnabled: true,
+  single: { label: 'Timer', durationMs: 10 * 60 * 1000 },
 }
 
 export const defaultPlaylist: PlaylistItem[] = [

@@ -31,7 +31,14 @@ export interface VisualSettings {
   clockFormat: ClockFormat
   logoDataUrl: string | null
   logoPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center'
+  logoScale: number
   backgroundStyle: 'solid' | 'gradient'
+  particles: boolean
+}
+
+export interface SingleTimer {
+  label: string
+  durationMs: number
 }
 
 export interface Settings {
@@ -39,6 +46,8 @@ export interface Settings {
   visual: VisualSettings
   warningThresholds: WarningThreshold[]
   breakDefaultMs: number
+  playlistEnabled: boolean
+  single: SingleTimer
 }
 
 export type RunPhase = 'idle' | 'running' | 'paused' | 'finished'

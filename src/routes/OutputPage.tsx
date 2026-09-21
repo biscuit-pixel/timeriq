@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useTimerStore } from '../store/timerStore'
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 import { useLiveRemaining } from '../hooks/useLiveRemaining'
+import { useActiveItems } from '../hooks/useActiveItems'
 import { TimerDisplay } from '../components/TimerDisplay'
 
 export function OutputPage() {
@@ -12,13 +13,10 @@ export function OutputPage() {
     useTimerStore.getState().requestSync()
   }, [])
 
-  const playlist = useTimerStore((s) => s.playlist)
   const run = useTimerStore((s) => s.run)
   const settings = useTimerStore((s) => s.settings)
   const remainingMs = useLiveRemaining(run)
-
-  const item = playlist[run.currentIndex] ?? null
-  const nextItem = playlist[run.currentIndex + 1] ?? null
+  const { item, nextItem } = useActiveItems()
 
   return (
     <div className="output-root" data-theme={settings.visual.theme}>

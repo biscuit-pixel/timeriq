@@ -405,6 +405,8 @@ input {
 
 .segmented {
   display: inline-flex;
+  flex-wrap: wrap;
+  max-width: 100%;
   padding: 3px;
   background: var(--bg-2);
   border: 1px solid var(--border);
@@ -426,7 +428,6 @@ input {
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
-  white-space: nowrap;
 }
 
 .segmented-opt--active {
@@ -823,8 +824,8 @@ input {
 
 .stage-logo {
   position: absolute;
-  max-height: clamp(28px, 6vw, 64px);
-  max-width: clamp(70px, 16vw, 200px);
+  max-height: calc(clamp(28px, 6vw, 64px) * var(--logo-scale, 1));
+  max-width: calc(clamp(70px, 16vw, 200px) * var(--logo-scale, 1));
   object-fit: contain;
   z-index: 1;
 }
@@ -852,8 +853,8 @@ input {
 .logo-center {
   position: static;
   margin-bottom: 12px;
-  max-height: clamp(40px, 8vw, 90px);
-  max-width: 50%;
+  max-height: calc(clamp(40px, 8vw, 90px) * var(--logo-scale, 1));
+  max-width: 80%;
 }
 
 .timer-stage--preview .stage-content {
@@ -872,4 +873,103 @@ input {
   font-size: 11.5px;
   color: var(--text-2);
   letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Additions: particles, duration input, mode toggle, sliders              */
+/* ---------------------------------------------------------------------- */
+
+.particle-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.field {
+  min-width: 0;
+}
+
+.panel-header-total--row {
+  margin: -6px 0 12px;
+}
+
+.single-timer-fields {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.single-timer-fields .text-input {
+  flex: 1 1 160px;
+}
+
+.duration-input {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-2);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  cursor: text;
+  outline: none;
+  user-select: none;
+  transition: border-color 0.15s ease;
+}
+
+.duration-input--focused {
+  border-color: color-mix(in srgb, var(--accent) 65%, var(--border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.duration-cell {
+  display: inline-flex;
+}
+
+.duration-digit {
+  min-width: 0.7em;
+  padding: 1px 1px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.duration-digit--active {
+  background: var(--accent);
+  color: white;
+}
+
+.duration-colon {
+  padding: 0 1px;
+  color: var(--text-2);
+}
+
+.slider-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.slider-field input[type='range'] {
+  flex: 1 1 auto;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+
+.slider-value {
+  width: 42px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+.app-brand h1 {
+  text-transform: lowercase;
 }

@@ -5,6 +5,7 @@ import { activeThreshold } from '../utils/warnings'
 import { ProgressBar } from './ProgressBar'
 import { ProgressRing } from './ProgressRing'
 import { ClockWidget } from './ClockWidget'
+import { ParticleField } from './ParticleField'
 
 interface Props {
   item: PlaylistItem | null
@@ -51,8 +52,9 @@ export function TimerDisplay({ item, nextItem, remainingMs, phase, settings, var
         isBreak ? 'timer-stage--break' : '',
       ].join(' ')}
       data-theme={visual.theme}
-      style={{ '--accent': accent, '--stage-font': visual.fontFamily === 'mono' ? 'var(--font-mono)' : 'var(--font-ui)' } as React.CSSProperties}
+      style={{ '--accent': accent, '--stage-font': visual.fontFamily === 'mono' ? 'var(--font-mono)' : 'var(--font-ui)', '--logo-scale': visual.logoScale } as React.CSSProperties}
     >
+      {visual.particles && <ParticleField color={accent} density={variant === 'output' ? 1 : 0.7} />}
       {visual.logoDataUrl && (
         <img src={visual.logoDataUrl} alt="logo" className={`stage-logo ${logoPositionClass[visual.logoPosition]}`} />
       )}

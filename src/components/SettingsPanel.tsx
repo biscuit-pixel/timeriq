@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useTranslation } from '../i18n/useTranslation'
 import { useTimerStore } from '../store/timerStore'
 import { fileToResizedDataUrl } from '../utils/logo'
-import { clockInputToMs, msToClockInput } from '../utils/time'
+import { DurationInput } from './DurationInput'
 import { ThresholdEditor } from './ThresholdEditor'
 import type { Settings } from '../store/types'
 
@@ -107,11 +107,18 @@ export function SettingsPanel() {
         </div>
 
         <div className="field">
+          <label className="checkbox-field">
+            <input type="checkbox" checked={visual.particles} onChange={(e) => updateVisual({ particles: e.target.checked })} />
+            {t('settings.particles')}
+          </label>
+        </div>
+
+        <div className="field">
           <label>{t('settings.breakDefault')}</label>
-          <input
-            className="text-input text-input--duration"
-            value={msToClockInput(breakDefaultMs)}
-            onChange={(e) => updateSettings({ breakDefaultMs: clockInputToMs(e.target.value) })}
+          <DurationInput
+            valueMs={breakDefaultMs}
+            ariaLabel={t('settings.breakDefault')}
+            onChange={(ms) => updateSettings({ breakDefaultMs: ms })}
           />
         </div>
 
@@ -146,6 +153,20 @@ export function SettingsPanel() {
               </button>
             )}
           </div>
+          {visual.logoDataUrl && (
+            <label className="slider-field">
+              <span>{t('settings.logoScale')}</span>
+              <input
+                type="range"
+                min="0.4"
+                max="3"
+                step="0.05"
+                value={visual.logoScale}
+                onChange={(e) => updateVisual({ logoScale: Number(e.target.value) })}
+              />
+              <span className="slider-value">{Math.round(visual.logoScale * 100)}%</span>
+            </label>
+          )}
           {visual.logoDataUrl && (
             <div className="segmented segmented--wrap">
               {(['top-left', 'top-right', 'bottom-left', 'bottom-right', 'center'] as const).map((pos) => (

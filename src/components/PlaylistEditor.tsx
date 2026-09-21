@@ -3,6 +3,7 @@ import { useTranslation } from '../i18n/useTranslation'
 import { useTimerStore } from '../store/timerStore'
 import { formatDuration } from '../utils/time'
 import { AddItemForm } from './AddItemForm'
+import { ModeToggle } from './ModeToggle'
 import { PlaylistItemRow } from './PlaylistItemRow'
 
 export function PlaylistEditor() {
@@ -19,9 +20,10 @@ export function PlaylistEditor() {
     <section className="panel">
       <div className="panel-header">
         <h2>{t('playlist.title')}</h2>
-        <span className="panel-header-total">
-          {t('playlist.totalDuration')}: {formatDuration(total)}
-        </span>
+        <ModeToggle />
+      </div>
+      <div className="panel-header-total panel-header-total--row">
+        {t('playlist.totalDuration')}: {formatDuration(total)}
       </div>
 
       {playlist.length === 0 && <p className="empty-copy">{t('control.noItems')}</p>}

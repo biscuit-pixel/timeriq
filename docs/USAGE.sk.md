@@ -1,8 +1,8 @@
-# TimerIQ — Používateľská príručka
+# timeriq — Používateľská príručka
 
 *English version: [USAGE.en.md](./USAGE.en.md)*
 
-TimerIQ je časovač na prezentácie, ktorý beží celý priamo vo vašom prehliadači (alebo ako nainštalovaná offline aplikácia). Nepotrebuje žiadny účet, žiadny server a žiadne dáta neopúšťajú vaše zariadenie — všetko sa ukladá lokálne.
+timeriq je časovač na prezentácie, ktorý beží celý priamo vo vašom prehliadači (alebo ako nainštalovaná offline aplikácia). Nepotrebuje žiadny účet, žiadny server a žiadne dáta neopúšťajú vaše zariadenie — všetko sa ukladá lokálne.
 
 ## Rýchly štart
 
@@ -24,17 +24,25 @@ Fungujú v oboch oknách — ovládacom aj výstupnom (ak je aktívne výstupné
 
 Skratky sa ignorujú, kým píšete do textového poľa.
 
+## Úprava času klávesnicou
+
+Každé pole s trvaním (riadky playlistu, formulár na pridanie, upozornenia, predvolená prestávka, jeden časovač) je editor `mm:ss` ovládaný klávesnicou. Kliknite naň (alebo naň prejdite klávesom Tab), potom `←` / `→` vyberá číslicu, `↑` / `↓` pripočíta alebo odpočíta na danej číslici (s prenosom, napr. `0:59` + 1 s = `1:00`), alebo číslom prepíšete vybranú číslicu. `Enter` / `Esc` pole opustí.
+
+## Režim jedného časovača
+
+Nepotrebujete program? Použite prepínač **Playlist / Jeden časovač** nad zoznamom. Režim jedného časovača zobrazí len jeden názov a jedno trvanie, skryje tlačidlá preskočenia aj „Nasleduje" a po dosiahnutí nuly sa zastaví. Playlist sa zachová a po prepnutí späť sa vráti.
+
 ## Playlist
 
 Každý riadok je buď **časovač** (prednáška, segment, blok programu) alebo **prestávka**. Môžete:
 
-- **Pridať** časovač alebo prestávku pomocou formulára pod playlistom (zadajte názov a trvanie v tvare `mm:ss`, napr. `12:30`).
+- **Pridať** časovač alebo prestávku pomocou formulára pod playlistom (zadajte názov a nastavte trvanie).
 - **Zmeniť poradie** ťahaním úchytky vľavo od riadku.
-- **Upraviť** názov priamo v riadku, alebo kliknutím na dĺžku zadať novú hodnotu.
+- **Upraviť** názov priamo v riadku, alebo upraviť trvanie klávesnicou (pozri vyššie).
 - **Duplikovať** alebo **odstrániť** segment pomocou tlačidiel s ikonami.
 - **Preskočiť** na ľubovoľný segment kliknutím na jeho poradové číslo.
 
-Keď bežiacemu segmentu dôjde čas, TimerIQ automaticky prejde na ďalšiu položku v zozname a pokračuje v behu — takže celý program (prednáška → prestávka → prednáška → …) môže plynúť samostatne, keď ho raz spustíte. Aby automatický posun fungoval, ovládacie okno musí zostať otvorené; výstupné okno je len zrkadlo.
+Keď bežiacemu segmentu dôjde čas, timeriq automaticky prejde na ďalšiu položku v zozname a pokračuje v behu — takže celý program (prednáška → prestávka → prednáška → …) môže plynúť samostatne, keď ho raz spustíte. Aby automatický posun fungoval, ovládacie okno musí zostať otvorené; výstupné okno je len zrkadlo.
 
 ## Upozornenia na čas (zmena farby)
 
@@ -52,17 +60,17 @@ V **Nastavenia → Upozornenia na čas** si definujete jeden alebo viac bodov sp
 V **Nastaveniach** môžete nastaviť:
 
 - **Tému** — tmavú (predvolené) alebo svetlú.
-- **Farbu akcentu**, **písmo** (čisté bezpätkové alebo monospace), **štýl priebehu** (pruh, kruh alebo oboje), **pozadie** (plné alebo prechod).
+- **Farbu akcentu**, **písmo** (čisté bezpätkové alebo monospace), **štýl priebehu** (pruh, kruh alebo oboje), **pozadie** (plné alebo prechod) a **animované častice**, ktoré sa vznášajú za časovačom (preberajú aj farbu upozornení).
 - **Hodiny** — zobrazenie aktuálneho času na výstupnej obrazovke, v 24-hodinovom alebo 12-hodinovom formáte.
-- **Logo** — nahrajte obrázok (automaticky sa zmenší a uloží lokálne); vyberte, v ktorom rohu sa má zobraziť, alebo ho vycentrujte pre pokojovú/čakaciu obrazovku.
+- **Logo** — nahrajte obrázok (automaticky sa zmenší a uloží lokálne); vyberte, v ktorom rohu sa má zobraziť (alebo ho vycentrujte), a zmeňte jeho veľkosť posuvníkom **Veľkosť loga**.
 
 ## Offline používanie
 
-TimerIQ je Progresívna webová aplikácia (PWA). Po prvej návšteve funguje aj bez internetového pripojenia. Ak si ju chcete nainštalovať ako samostatnú aplikáciu, použite v prehliadači voľbu „Nainštalovať aplikáciu" / „Pridať na plochu" (zvyčajne v adresnom riadku alebo v menu prehliadača).
+timeriq je Progresívna webová aplikácia (PWA). Po prvej návšteve funguje aj bez internetového pripojenia. Ak si ju chcete nainštalovať ako samostatnú aplikáciu, použite v prehliadači voľbu „Nainštalovať aplikáciu" / „Pridať na plochu" (zvyčajne v adresnom riadku alebo v menu prehliadača).
 
 ## Dáta a súkromie
 
-Váš playlist a nastavenia sa ukladajú len v lokálnom úložisku vášho prehliadača, na vašom zariadení. Vymazaním dát webu TimerIQ v prehliadači (alebo voľbou **Nastavenia → Vymazať všetky dáta**) sa odstráni úplne všetko.
+Váš playlist a nastavenia sa ukladajú len v lokálnom úložisku vášho prehliadača, na vašom zariadení. Vymazaním dát webu timeriq v prehliadači (alebo voľbou **Nastavenia → Vymazať všetky dáta**) sa odstráni úplne všetko.
 
 ---
 Vytvoril **møušn**.
