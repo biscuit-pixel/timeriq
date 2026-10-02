@@ -12,6 +12,7 @@ import { ThemeToggle } from '../components/ThemeToggle'
 import { PlaylistEditor } from '../components/PlaylistEditor'
 import { SettingsPanel } from '../components/SettingsPanel'
 import { TimerDisplay } from '../components/TimerDisplay'
+import { TopNav } from '../components/TopNav'
 
 export function ControlPage() {
   const { t } = useTranslation()
@@ -30,6 +31,7 @@ export function ControlPage() {
           <img src="/icon.svg" alt="" className="app-brand-mark" />
           <h1>{t('appName')}</h1>
         </div>
+        <TopNav />
         <div className="app-header-actions">
           <LanguageSwitcher />
           <ThemeToggle />

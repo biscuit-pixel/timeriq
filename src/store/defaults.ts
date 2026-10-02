@@ -9,7 +9,7 @@ export const defaultThresholds: WarningThreshold[] = [
 ]
 
 export const defaultSettings: Settings = {
-  language: 'en',
+  language: 'sk',
   visual: {
     theme: 'dark',
     accentColor: DEFAULT_ACCENT,

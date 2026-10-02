@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
-import type { RunState } from '../store/types'
 import { clampMs } from '../utils/time'
 
+interface LiveRunLike {
+  phase: string
+  endTimestamp: number | null
+  remainingMs: number
+}
+
 /** Recomputes remaining time every animation frame while running, for a smooth countdown/progress bar. */
-export function useLiveRemaining(run: RunState): number {
+export function useLiveRemaining(run: LiveRunLike): number {
   const [now, setNow] = useState(() => Date.now())
   const frame = useRef<number>(0)
 

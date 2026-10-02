@@ -64,6 +64,18 @@ In **Settings** you can set:
 - **Clock** — show the current time on the output screen, 24h or 12h.
 - **Logo** — upload an image (it's downscaled and stored locally); choose which corner it sits in (or center it), and scale it with the **Logo size** slider.
 
+## Debate timer
+
+A separate tool for panel discussions and debates — switch to it with the **Presentation / Debate** tabs at the top.
+
+- Add participants with a name and an optional photo (click their avatar in the list to upload one; no photo falls back to initials).
+- Give each participant their own time budget. Every participant keeps a separate, independent clock.
+- Click **Spotlight** on a participant to bring them to center stage and start their clock; the previously active participant's time is banked exactly where it stood and they move to the row of smaller timers at the bottom. Only one clock ever runs at a time.
+- `Space` play/pauses whoever is currently spotlighted (without switching), `Esc` resets their time to the amount you assigned, `←`/`→` switch the spotlight to the previous/next participant.
+- Add a **discussion name** and/or a **logo** (with its own size/position) in settings — shown on the output screen.
+- **Open output window** / **Open on second screen** work exactly like the presentation tool.
+- **Open lower third** opens a small, transparent window showing just the current speaker's name, photo and time — add it as a Browser Source in OBS (or similar) for a livestream overlay; it has no background to key out.
+
 ## Offline use
 
 timeriq is a Progressive Web App. After your first visit, it keeps working with no internet connection. To install it as a standalone app: use your browser's "Install app" / "Add to Home screen" option (usually in the address bar or browser menu).

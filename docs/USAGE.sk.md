@@ -64,6 +64,18 @@ V **Nastaveniach** môžete nastaviť:
 - **Hodiny** — zobrazenie aktuálneho času na výstupnej obrazovke, v 24-hodinovom alebo 12-hodinovom formáte.
 - **Logo** — nahrajte obrázok (automaticky sa zmenší a uloží lokálne); vyberte, v ktorom rohu sa má zobraziť (alebo ho vycentrujte), a zmeňte jeho veľkosť posuvníkom **Veľkosť loga**.
 
+## Debatný časovač
+
+Samostatný nástroj na panelové diskusie a debaty — prepnete naň záložkami **Prezentácia / Diskusia** navrchu.
+
+- Pridajte účastníkov s menom a voliteľnou fotkou (kliknutím na avatar v zozname fotku nahráte; bez fotky sa zobrazia iniciály).
+- Každému účastníkovi priraďte vlastný časový limit. Každý účastník má svoj nezávislý časovač.
+- Kliknutím na **Dať slovo** pri účastníkovi ho presuniete do stredu obrazovky a spustíte jeho čas; predtým aktívnemu účastníkovi sa čas presne zastaví tam, kde bol, a presunie sa do riadku menších časovačov dole. Naraz beží vždy len jeden časovač.
+- `Medzerník` spustí/pozastaví práve vybraného rečníka (bez zmeny výberu), `Esc` resetuje jeho čas na priradenú hodnotu, `←`/`→` prepnú slovo na predchádzajúceho/ďalšieho účastníka.
+- V nastaveniach pridajte **názov diskusie** a/alebo **logo** (s vlastnou veľkosťou/pozíciou) — zobrazia sa na výstupnej obrazovke.
+- **Otvoriť výstupné okno** / **Otvoriť na druhej obrazovke** fungujú rovnako ako v prezentačnom nástroji.
+- **Otvoriť spodný pruh** otvorí malé priehľadné okno zobrazujúce len meno, fotku a čas aktuálneho rečníka — pridajte ho ako Browser Source v OBS (alebo podobnom nástroji) pre prekrytie pri livestreame; nemá pozadie, takže ho netreba klučovať.
+
 ## Offline používanie
 
 timeriq je Progresívna webová aplikácia (PWA). Po prvej návšteve funguje aj bez internetového pripojenia. Ak si ju chcete nainštalovať ako samostatnú aplikáciu, použite v prehliadači voľbu „Nainštalovať aplikáciu" / „Pridať na plochu" (zvyčajne v adresnom riadku alebo v menu prehliadača).

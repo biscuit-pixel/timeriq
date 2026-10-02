@@ -4,6 +4,8 @@ export const translations = {
     nav: {
       control: 'Control',
       settings: 'Settings',
+      presentation: 'Presentation',
+      debate: 'Debate',
     },
     control: {
       openOutput: 'Open output window',
@@ -94,12 +96,28 @@ export const translations = {
     footer: {
       madeBy: 'Made by møušn',
     },
+    debate: {
+      participants: 'Participants',
+      addDebater: 'Add participant',
+      name: 'Name',
+      defaultName: 'Speaker',
+      allotted: 'Time allotted',
+      spotlight: 'Spotlight',
+      uploadPhoto: 'Upload photo',
+      noDebaters: 'Add participants to get started.',
+      discussionName: 'Discussion name',
+      discussionNamePlaceholder: 'e.g. Town hall debate',
+      shortcuts: 'Space: play/pause · Esc: reset current · ←/→: switch speaker',
+      openLowerThird: 'Open lower third',
+    },
   },
   sk: {
     appName: 'timeriq',
     nav: {
       control: 'Ovládanie',
       settings: 'Nastavenia',
+      presentation: 'Prezentácia',
+      debate: 'Diskusia',
     },
     control: {
       openOutput: 'Otvoriť výstupné okno',
@@ -189,6 +207,20 @@ export const translations = {
     },
     footer: {
       madeBy: 'Vytvoril møušn',
+    },
+    debate: {
+      participants: 'Účastníci',
+      addDebater: 'Pridať účastníka',
+      name: 'Meno',
+      defaultName: 'Rečník',
+      allotted: 'Pridelený čas',
+      spotlight: 'Dať slovo',
+      uploadPhoto: 'Nahrať fotku',
+      noDebaters: 'Pridajte účastníkov diskusie.',
+      discussionName: 'Názov diskusie',
+      discussionNamePlaceholder: 'napr. Predvolebná debata',
+      shortcuts: 'Medzerník: spustiť/pozastaviť · Esc: reset aktuálneho · ←/→: ďalší rečník',
+      openLowerThird: 'Otvoriť spodný pruh',
     },
   },
 } as const

@@ -1,13 +1,16 @@
 import { useTranslation } from '../i18n/useTranslation'
-import { useTimerStore } from '../store/timerStore'
+import type { WarningThreshold } from '../store/types'
 import { DurationInput } from './DurationInput'
 
-export function ThresholdEditor() {
+interface Props {
+  thresholds: WarningThreshold[]
+  onAdd: (t: Omit<WarningThreshold, 'id'>) => void
+  onUpdate: (id: string, patch: Partial<WarningThreshold>) => void
+  onRemove: (id: string) => void
+}
+
+export function ThresholdEditor({ thresholds, onAdd, onUpdate, onRemove }: Props) {
   const { t } = useTranslation()
-  const thresholds = useTimerStore((s) => s.settings.warningThresholds)
-  const addThreshold = useTimerStore((s) => s.addThreshold)
-  const updateThreshold = useTimerStore((s) => s.updateThreshold)
-  const removeThreshold = useTimerStore((s) => s.removeThreshold)
 
   return (
     <div className="threshold-editor">
@@ -16,39 +19,39 @@ export function ThresholdEditor() {
         <div className="threshold-row" key={th.id}>
           <DurationInput
             valueMs={th.atMs}
-            minMs={1000}
+            minMs={0}
             ariaLabel={t('settings.thresholdAt')}
-            onChange={(ms) => updateThreshold(th.id, { atMs: ms })}
+            onChange={(ms) => onUpdate(th.id, { atMs: ms })}
           />
           <input
             type="color"
             className="color-input"
             value={th.color}
             title={t('settings.thresholdColor')}
-            onChange={(e) => updateThreshold(th.id, { color: e.target.value })}
+            onChange={(e) => onUpdate(th.id, { color: e.target.value })}
           />
           <input
             className="text-input"
             value={th.label}
             title={t('settings.thresholdLabel')}
-            onChange={(e) => updateThreshold(th.id, { label: e.target.value })}
+            onChange={(e) => onUpdate(th.id, { label: e.target.value })}
           />
           <label className="checkbox-field checkbox-field--compact">
             <input
               type="checkbox"
               checked={th.pulse}
-              onChange={(e) => updateThreshold(th.id, { pulse: e.target.checked })}
+              onChange={(e) => onUpdate(th.id, { pulse: e.target.checked })}
             />
             {t('settings.thresholdPulse')}
           </label>
-          <button className="icon-btn icon-btn--danger" onClick={() => removeThreshold(th.id)}>
+          <button className="icon-btn icon-btn--danger" onClick={() => onRemove(th.id)}>
             ×
           </button>
         </div>
       ))}
       <button
         className="ctrl-btn ctrl-btn--ghost ctrl-btn--sm"
-        onClick={() => addThreshold({ atMs: 2 * 60 * 1000, color: '#f5a623', label: 'Warning', pulse: false })}
+        onClick={() => onAdd({ atMs: 2 * 60 * 1000, color: '#f5a623', label: 'Warning', pulse: false })}
       >
         + {t('settings.addThreshold')}
       </button>

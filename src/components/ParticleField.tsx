@@ -22,8 +22,6 @@ function hexToRgb(hex: string): [number, number, number] {
   return [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)]
 }
 
-const LINK_DISTANCE = 120
-
 export function ParticleField({ color, density = 1 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const targetColor = useRef<[number, number, number]>(hexToRgb(color))
@@ -45,15 +43,18 @@ export function ParticleField({ color, density = 1 }: Props) {
     let particles: Particle[] = []
     const current: [number, number, number] = [...targetColor.current]
 
-    const seed = (): Particle => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: (0.7 + Math.random() * 1.9) * dpr,
-      speed: (6 + Math.random() * 16) * dpr,
-      drift: (Math.random() - 0.5) * 10 * dpr,
-      phase: Math.random() * Math.PI * 2,
-      twinkle: 0.6 + Math.random() * 1.4,
-    })
+    const seed = (): Particle => {
+      const big = Math.random() < 0.16
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: (big ? 2.6 + Math.random() * 2.4 : 0.6 + Math.random() * 1.5) * dpr,
+        speed: (big ? 4 + Math.random() * 7 : 7 + Math.random() * 17) * dpr,
+        drift: (Math.random() - 0.5) * 10 * dpr,
+        phase: Math.random() * Math.PI * 2,
+        twinkle: 0.5 + Math.random() * 1.6,
+      }
+    }
 
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -81,30 +82,13 @@ export function ParticleField({ color, density = 1 }: Props) {
         else if (p.x > width + 10) p.x = -10
       }
 
-      const linkDist = LINK_DISTANCE * dpr
-      ctx.lineWidth = dpr * 0.8
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const d = Math.hypot(dx, dy)
-          if (d < linkDist) {
-            ctx.strokeStyle = `rgba(${cr},${cg},${cb},${0.17 * (1 - d / linkDist)})`
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.stroke()
-          }
-        }
-      }
-
       for (const p of particles) {
-        const tw = 0.55 + 0.45 * Math.sin(t * 0.001 * p.twinkle + p.phase)
-        ctx.fillStyle = `rgba(${cr},${cg},${cb},${0.17 * tw})`
+        const tw = 0.5 + 0.5 * Math.sin(t * 0.001 * p.twinkle + p.phase)
+        ctx.fillStyle = `rgba(${cr},${cg},${cb},${0.22 * tw})`
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r * 3.4, 0, Math.PI * 2)
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2)
         ctx.fill()
-        ctx.fillStyle = `rgba(${cr},${cg},${cb},${0.45 + 0.5 * tw})`
+        ctx.fillStyle = `rgba(${cr},${cg},${cb},${0.5 + 0.45 * tw})`
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
         ctx.fill()

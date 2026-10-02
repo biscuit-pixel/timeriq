@@ -12,6 +12,10 @@ export function SettingsPanel() {
   const breakDefaultMs = useTimerStore((s) => s.settings.breakDefaultMs)
   const updateVisual = useTimerStore((s) => s.updateVisual)
   const updateSettings = useTimerStore((s) => s.updateSettings)
+  const warningThresholds = useTimerStore((s) => s.settings.warningThresholds)
+  const addThreshold = useTimerStore((s) => s.addThreshold)
+  const updateThreshold = useTimerStore((s) => s.updateThreshold)
+  const removeThreshold = useTimerStore((s) => s.removeThreshold)
   const fileInput = useRef<HTMLInputElement>(null)
 
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -186,7 +190,12 @@ export function SettingsPanel() {
       <div className="panel-subheader">
         <h3>{t('settings.warnings')}</h3>
       </div>
-      <ThresholdEditor />
+      <ThresholdEditor
+        thresholds={warningThresholds}
+        onAdd={addThreshold}
+        onUpdate={updateThreshold}
+        onRemove={removeThreshold}
+      />
 
       <div className="panel-footer">
         <button className="ctrl-btn ctrl-btn--danger ctrl-btn--sm" onClick={resetAll}>
