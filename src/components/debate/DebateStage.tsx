@@ -43,6 +43,7 @@ function DebateCenterCard({ debater, remainingMs, accent, phase, size, layer }: 
   return (
     <div className={`debate-center debate-center--${layer}`}>
       <DebaterAvatar name={debater.name} photoDataUrl={debater.photoDataUrl} size={size} className="debate-center-avatar" />
+      {debater.kind === 'question' && <span className="debate-kind-badge">{t('debate.kindQuestion')}</span>}
       <div className="debate-center-name">{debater.name}</div>
       <div className="debate-center-time" style={{ color: accent }}>
         {formatDuration(remainingMs)}
@@ -133,7 +134,10 @@ export function DebateStage({ debaters, activeIndex, activeRemainingMs, phase, s
               <div className="debate-chip" key={d.id}>
                 <DebaterAvatar name={d.name} photoDataUrl={d.photoDataUrl} size={variant === 'output' ? 56 : 34} />
                 <div className="debate-chip-info">
-                  <span className="debate-chip-name">{d.name}</span>
+                  <span className="debate-chip-name">
+                    {d.name}
+                    {d.kind === 'question' && <span className="debate-kind-badge debate-kind-badge--chip">{t('debate.kindQuestion')}</span>}
+                  </span>
                   <span className="debate-chip-time">{formatDuration(d.remainingMs)}</span>
                 </div>
               </div>

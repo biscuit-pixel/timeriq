@@ -71,6 +71,7 @@ A separate tool for panel discussions and debates — switch to it with the **Pr
 - Add participants with a name and an optional photo (click their avatar in the list to upload one; no photo falls back to initials).
 - Give each participant their own time budget. Every participant keeps a separate, independent clock.
 - Click **Spotlight** on a participant to bring them to center stage and start their clock; the previously active participant's time is banked exactly where it stood and they move to the row of smaller timers at the bottom. Only one clock ever runs at a time.
+- Use **+ Add Q&A timer** for a reusable "host questions" slot (shown with a distinct badge). Its row has its own reset button, so you can snap it back to the full allotted time after every question without resetting whoever else is currently spotlighted.
 - `Space` play/pauses whoever is currently spotlighted (without switching), `Esc` resets their time to the amount you assigned, `←`/`→` switch the spotlight to the previous/next participant.
 - Add a **discussion name** and/or a **logo** (with its own size/position) in settings — shown on the output screen.
 - **Open output window** / **Open on second screen** work exactly like the presentation tool.

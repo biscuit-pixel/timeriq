@@ -2,9 +2,11 @@ import { v4 as uuid } from 'uuid'
 import type { DebateSettings, DebateState, Debater } from './types'
 
 export const defaultDebaters: Debater[] = [
-  { id: uuid(), name: 'Speaker A', photoDataUrl: null, allottedMs: 5 * 60 * 1000, remainingMs: 5 * 60 * 1000 },
-  { id: uuid(), name: 'Speaker B', photoDataUrl: null, allottedMs: 5 * 60 * 1000, remainingMs: 5 * 60 * 1000 },
+  { id: uuid(), name: 'Speaker A', photoDataUrl: null, allottedMs: 5 * 60 * 1000, remainingMs: 5 * 60 * 1000, kind: 'speaker' },
+  { id: uuid(), name: 'Speaker B', photoDataUrl: null, allottedMs: 5 * 60 * 1000, remainingMs: 5 * 60 * 1000, kind: 'speaker' },
 ]
+
+export const defaultQuestionDurationMs = 2 * 60 * 1000
 
 export const defaultDebateSettings: DebateSettings = {
   discussionName: '',

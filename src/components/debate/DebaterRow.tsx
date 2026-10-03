@@ -39,11 +39,15 @@ const PlayIcon = () => (
 const PauseIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
 )
+const ResetIcon = () => (
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" /></svg>
+)
 
 export function DebaterRow({ debater, index, isActive, isRunning, displayMs, onDragStart, onDragOver, onDrop }: Props) {
   const { t } = useTranslation()
   const updateDebater = useDebateStore((s) => s.updateDebater)
   const removeDebater = useDebateStore((s) => s.removeDebater)
+  const resetDebater = useDebateStore((s) => s.resetDebater)
   const selectIndex = useDebateStore((s) => s.selectIndex)
   const toggle = useDebateStore((s) => s.toggle)
   const photoInput = useRef<HTMLInputElement>(null)
@@ -74,6 +78,10 @@ export function DebaterRow({ debater, index, isActive, isRunning, displayMs, onD
     >
       <span className="drag-handle"><DragIcon /></span>
 
+      <span className={`type-chip ${debater.kind === 'question' ? 'type-chip--break' : ''}`}>
+        {debater.kind === 'question' ? t('debate.kindQuestion') : t('debate.kindSpeaker')}
+      </span>
+
       <button className="debater-photo-btn" onClick={() => photoInput.current?.click()} title={t('debate.uploadPhoto')}>
         <DebaterAvatar name={debater.name} photoDataUrl={debater.photoDataUrl} size={40} />
       </button>
@@ -98,6 +106,10 @@ export function DebaterRow({ debater, index, isActive, isRunning, displayMs, onD
       <button className={`ctrl-btn ctrl-btn--sm ${isActive ? 'ctrl-btn--primary' : 'ctrl-btn--ghost'}`} onClick={handleSpotlight}>
         {isActive && isRunning ? <PauseIcon /> : <PlayIcon />}
         {isActive ? (isRunning ? t('control.pause') : t('control.play')) : t('debate.spotlight')}
+      </button>
+
+      <button className="icon-btn" onClick={() => resetDebater(debater.id)} title={t('debate.resetTimer')}>
+        <ResetIcon />
       </button>
 
       <button className="icon-btn icon-btn--danger" onClick={() => removeDebater(debater.id)} title={t('playlist.remove')}>

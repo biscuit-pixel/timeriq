@@ -71,6 +71,7 @@ Samostatný nástroj na panelové diskusie a debaty — prepnete naň záložkam
 - Pridajte účastníkov s menom a voliteľnou fotkou (kliknutím na avatar v zozname fotku nahráte; bez fotky sa zobrazia iniciály).
 - Každému účastníkovi priraďte vlastný časový limit. Každý účastník má svoj nezávislý časovač.
 - Kliknutím na **Dať slovo** pri účastníkovi ho presuniete do stredu obrazovky a spustíte jeho čas; predtým aktívnemu účastníkovi sa čas presne zastaví tam, kde bol, a presunie sa do riadku menších časovačov dole. Naraz beží vždy len jeden časovač.
+- Tlačidlom **+ Pridať časovač na otázky** vytvoríte opakovane použiteľný slot pre otázky od moderátorov (zobrazí sa s vlastným odznakom). Jeho riadok má vlastné tlačidlo na reset, takže ho po každej otázke vrátite na plný pridelený čas bez ovplyvnenia práve vybraného rečníka.
 - `Medzerník` spustí/pozastaví práve vybraného rečníka (bez zmeny výberu), `Esc` resetuje jeho čas na priradenú hodnotu, `←`/`→` prepnú slovo na predchádzajúceho/ďalšieho účastníka.
 - V nastaveniach pridajte **názov diskusie** a/alebo **logo** (s vlastnou veľkosťou/pozíciou) — zobrazia sa na výstupnej obrazovke.
 - **Otvoriť výstupné okno** / **Otvoriť na druhej obrazovke** fungujú rovnako ako v prezentačnom nástroji.

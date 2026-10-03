@@ -1,5 +1,7 @@
 import type { WarningThreshold } from '../store/types'
 
+export type DebaterKind = 'speaker' | 'question'
+
 export interface Debater {
   id: string
   name: string
@@ -7,6 +9,8 @@ export interface Debater {
   allottedMs: number
   /** Banked remaining time. Authoritative except while this debater is active and running. */
   remainingMs: number
+  /** 'question' marks a reusable host Q&A slot, shown with its own badge and a one-click reset. */
+  kind: DebaterKind
 }
 
 export type DebateRunPhase = 'idle' | 'running' | 'paused'

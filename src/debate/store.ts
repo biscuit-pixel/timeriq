@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { v4 as uuid } from 'uuid'
 import { defaultDebaters, defaultDebateSettings } from './defaults'
 import { debateSyncChannel, DEBATE_SESSION_ID } from './channel'
-import type { DebateRemoteAction, DebateSettings, DebateState, Debater, DebateRunState } from './types'
+import type { DebateRemoteAction, DebaterKind, DebateSettings, DebateState, Debater, DebateRunState } from './types'
 import type { WarningThreshold } from '../store/types'
 
 const STORAGE_KEY = 'timeriq-debate-store-v1'
@@ -17,8 +17,11 @@ function loadPersisted(): Persisted {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return { debaters: defaultDebaters, settings: defaultDebateSettings }
     const parsed = JSON.parse(raw)
+    const debaters: Debater[] = parsed.debaters?.length
+      ? parsed.debaters.map((d: Omit<Debater, 'kind'> & { kind?: DebaterKind }) => ({ ...d, kind: d.kind ?? 'speaker' }))
+      : defaultDebaters
     return {
-      debaters: parsed.debaters?.length ? parsed.debaters : defaultDebaters,
+      debaters,
       settings: { ...defaultDebateSettings, ...parsed.settings },
     }
   } catch {
@@ -46,9 +49,10 @@ interface DebateStore extends DebateState {
   selectNext: () => void
   selectPrev: () => void
   tickCheck: () => void
-  addDebater: (name: string, allottedMs: number) => void
+  addDebater: (name: string, allottedMs: number, kind?: DebaterKind) => void
   updateDebater: (id: string, patch: Partial<Omit<Debater, 'id'>>) => void
   removeDebater: (id: string) => void
+  resetDebater: (id: string) => void
   reorderDebater: (fromIndex: number, toIndex: number) => void
   updateSettings: (patch: Partial<DebateSettings>) => void
   addThreshold: (t: Omit<WarningThreshold, 'id'>) => void
@@ -157,9 +161,9 @@ export const useDebateStore = create<DebateStore>((set, get) => ({
     broadcastState(get)
   },
 
-  addDebater: (name, allottedMs) => {
+  addDebater: (name, allottedMs, kind = 'speaker') => {
     const s = get()
-    const debater: Debater = { id: uuid(), name, photoDataUrl: null, allottedMs, remainingMs: allottedMs }
+    const debater: Debater = { id: uuid(), name, photoDataUrl: null, allottedMs, remainingMs: allottedMs, kind }
     set({ debaters: [...s.debaters, debater] })
     persist(get)
     broadcastState(get)
@@ -190,6 +194,20 @@ export const useDebateStore = create<DebateStore>((set, get) => ({
       debaters,
       run: { activeIndex, phase: 'idle', endTimestamp: null, remainingMs: active?.remainingMs ?? 0 },
     })
+    persist(get)
+    broadcastState(get)
+  },
+
+  resetDebater: (id) => {
+    const s = get()
+    const index = s.debaters.findIndex((d) => d.id === id)
+    if (index === -1) return
+    if (index === s.run.activeIndex) {
+      get().reset()
+      return
+    }
+    const debaters = s.debaters.map((d) => (d.id === id ? { ...d, remainingMs: d.allottedMs } : d))
+    set({ debaters })
     persist(get)
     broadcastState(get)
   },

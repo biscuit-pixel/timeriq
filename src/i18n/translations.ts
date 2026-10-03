@@ -109,6 +109,11 @@ export const translations = {
       discussionNamePlaceholder: 'e.g. Town hall debate',
       shortcuts: 'Space: play/pause · Esc: reset current · ←/→: switch speaker',
       openLowerThird: 'Open lower third',
+      kindSpeaker: 'Speaker',
+      kindQuestion: 'Question',
+      defaultQuestionName: 'Q&A',
+      addQuestionTimer: 'Add Q&A timer',
+      resetTimer: 'Reset this timer',
     },
   },
   sk: {
@@ -221,6 +226,11 @@ export const translations = {
       discussionNamePlaceholder: 'napr. Predvolebná debata',
       shortcuts: 'Medzerník: spustiť/pozastaviť · Esc: reset aktuálneho · ←/→: ďalší rečník',
       openLowerThird: 'Otvoriť spodný pruh',
+      kindSpeaker: 'Rečník',
+      kindQuestion: 'Otázka',
+      defaultQuestionName: 'Otázky',
+      addQuestionTimer: 'Pridať časovač na otázky',
+      resetTimer: 'Resetovať tento časovač',
     },
   },
 } as const
