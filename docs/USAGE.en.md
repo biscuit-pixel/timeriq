@@ -68,6 +68,8 @@ In **Settings** you can set:
 
 A separate tool for panel discussions and debates — switch to it with the **Presentation / Debate** tabs at the top.
 
+- **Rounds** — a row of tabs just below the main nav lets you set up multiple segments of the same debate (e.g. "Opening statements" at 10 minutes per person, then "Rapid fire" at 2 minutes per person). Each round keeps its own roster, times, and running state completely independent of the others — switching rounds freezes whichever clock was running exactly where it stood, so coming back to an earlier round continues right where you left off. Use **+** to add a blank round, the duplicate icon on the active tab to copy the current roster into a new round (handy for a same-people, different-time format), the pencil to rename it, and the trash icon to remove it (you can't remove the last round). The round's name is also shown as the headline on the output screen.
+- Use **Time per person** + **Apply to all** above the participant list to set everyone's allotted time in the active round at once.
 - Add participants with a name and an optional photo (click their avatar in the list to upload one; no photo falls back to initials).
 - Give each participant their own time budget. Every participant keeps a separate, independent clock.
 - Click **Spotlight** on a participant to bring them to center stage and start their clock; the previously active participant's time is banked exactly where it stood and they move to the row of smaller timers at the bottom. Only one clock ever runs at a time.

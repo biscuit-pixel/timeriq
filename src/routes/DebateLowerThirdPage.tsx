@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useTimerStore } from '../store/timerStore'
-import { useDebateStore } from '../debate/store'
+import { useDebateStore, useActiveRound } from '../debate/store'
 import { useLiveRemaining } from '../hooks/useLiveRemaining'
 import { formatDuration } from '../utils/time'
 import { activeThreshold } from '../utils/warnings'
@@ -21,11 +21,10 @@ export function DebateLowerThirdPage() {
   }, [])
 
   const visual = useTimerStore((s) => s.settings.visual)
-  const debaters = useDebateStore((s) => s.debaters)
-  const run = useDebateStore((s) => s.run)
+  const round = useActiveRound()
   const settings = useDebateStore((s) => s.settings)
-  const remainingMs = useLiveRemaining(run)
-  const active = debaters[run.activeIndex] ?? null
+  const remainingMs = useLiveRemaining(round.run)
+  const active = round.debaters[round.run.activeIndex] ?? null
 
   const threshold = active ? activeThreshold(remainingMs, settings.warningThresholds) : null
   const accent = threshold?.color ?? visual.accentColor

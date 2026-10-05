@@ -1,5 +1,5 @@
 import { useTranslation } from '../../i18n/useTranslation'
-import { useDebateStore } from '../../debate/store'
+import { useDebateStore, useActiveRound } from '../../debate/store'
 
 const PlayIcon = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
@@ -19,8 +19,9 @@ const NextIcon = () => (
 
 export function DebateControlBar() {
   const { t } = useTranslation()
-  const phase = useDebateStore((s) => s.run.phase)
-  const count = useDebateStore((s) => s.debaters.length)
+  const round = useActiveRound()
+  const phase = round.run.phase
+  const count = round.debaters.length
   const { toggle, reset, selectNext, selectPrev } = useDebateStore()
 
   return (

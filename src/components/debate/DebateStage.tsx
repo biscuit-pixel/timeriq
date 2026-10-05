@@ -12,6 +12,8 @@ interface Props {
   activeIndex: number
   activeRemainingMs: number
   phase: DebateRunPhase
+  /** The active round's headline, e.g. "Opening statements". */
+  roundName?: string
   settings: DebateSettings
   visual: VisualSettings
   variant?: 'output' | 'preview'
@@ -53,7 +55,7 @@ function DebateCenterCard({ debater, remainingMs, accent, phase, size, layer }: 
   )
 }
 
-export function DebateStage({ debaters, activeIndex, activeRemainingMs, phase, settings, visual, variant = 'output' }: Props) {
+export function DebateStage({ debaters, activeIndex, activeRemainingMs, phase, roundName, settings, visual, variant = 'output' }: Props) {
   const { t } = useTranslation()
   const active = debaters[activeIndex] ?? null
   const others = active ? debaters.filter((d) => d.id !== active.id) : []
@@ -104,7 +106,12 @@ export function DebateStage({ debaters, activeIndex, activeRemainingMs, phase, s
       )}
 
       <div className="debate-content">
-        {settings.discussionName && <div className="debate-title">{settings.discussionName}</div>}
+        {(settings.discussionName || roundName) && (
+          <div className="debate-title-block">
+            {settings.discussionName && <div className="debate-title">{settings.discussionName}</div>}
+            {roundName && <div className="debate-round-name">{roundName}</div>}
+          </div>
+        )}
 
         <div className="debate-center-stack">
           {outgoing && (

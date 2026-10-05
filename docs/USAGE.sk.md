@@ -68,6 +68,8 @@ V **Nastaveniach** môžete nastaviť:
 
 Samostatný nástroj na panelové diskusie a debaty — prepnete naň záložkami **Prezentácia / Diskusia** navrchu.
 
+- **Kolá** — riadok záložiek hneď pod hlavnou navigáciou umožňuje nastaviť viacero častí tej istej debaty (napr. "Úvodné vyjadrenia" po 10 minút na osobu, potom "Rýchle kolo" po 2 minúty na osobu). Každé kolo má úplne nezávislú zostavu, časy aj bežiaci stav — prepnutím kola sa bežiaci časovač presne zastaví tam, kde bol, takže návrat k predchádzajúcemu kolu pokračuje presne odtiaľ, kde ste skončili. Tlačidlom **+** pridáte prázdne kolo, ikonou duplikovania na aktívnej záložke skopírujete aktuálnu zostavu do nového kola (hodí sa pre rovnakých ľudí s iným časovým formátom), ceruzkou ho premenujete a ikonou koša odstránite (posledné kolo odstrániť nemožno). Názov kola sa zobrazí aj ako nadpis na výstupnej obrazovke.
+- Pomocou **Čas na osobu** + **Použiť na všetkých** nad zoznamom účastníkov nastavíte pridelený čas všetkým naraz v aktívnom kole.
 - Pridajte účastníkov s menom a voliteľnou fotkou (kliknutím na avatar v zozname fotku nahráte; bez fotky sa zobrazia iniciály).
 - Každému účastníkovi priraďte vlastný časový limit. Každý účastník má svoj nezávislý časovač.
 - Kliknutím na **Dať slovo** pri účastníkovi ho presuniete do stredu obrazovky a spustíte jeho čas; predtým aktívnemu účastníkovi sa čas presne zastaví tam, kde bol, a presunie sa do riadku menších časovačov dole. Naraz beží vždy len jeden časovač.

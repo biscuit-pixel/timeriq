@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useTimerStore } from '../store/timerStore'
-import { useDebateStore } from '../debate/store'
+import { useDebateStore, useActiveRound } from '../debate/store'
 import { useDebateKeyboardShortcuts } from '../hooks/useDebateKeyboardShortcuts'
 import { useLiveRemaining } from '../hooks/useLiveRemaining'
 import { DebateStage } from '../components/debate/DebateStage'
@@ -14,18 +14,18 @@ export function DebateOutputPage() {
   }, [])
 
   const visual = useTimerStore((s) => s.settings.visual)
-  const debaters = useDebateStore((s) => s.debaters)
-  const run = useDebateStore((s) => s.run)
+  const round = useActiveRound()
   const settings = useDebateStore((s) => s.settings)
-  const activeRemainingMs = useLiveRemaining(run)
+  const activeRemainingMs = useLiveRemaining(round.run)
 
   return (
     <div className="output-root" data-theme={visual.theme}>
       <DebateStage
-        debaters={debaters}
-        activeIndex={run.activeIndex}
+        debaters={round.debaters}
+        activeIndex={round.run.activeIndex}
         activeRemainingMs={activeRemainingMs}
-        phase={run.phase}
+        phase={round.run.phase}
+        roundName={round.name}
         settings={settings}
         visual={visual}
         variant="output"

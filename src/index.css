@@ -1112,12 +1112,26 @@ input {
   text-align: center;
 }
 
+.debate-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
 .debate-title {
   font-size: clamp(12px, 1.3vw, 16px);
   font-weight: 650;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-2);
+}
+
+.debate-round-name {
+  font-size: clamp(14px, 1.8vw, 22px);
+  font-weight: 700;
+  color: var(--text-0);
+  letter-spacing: -0.01em;
 }
 
 .debate-center-stack {
@@ -1335,4 +1349,124 @@ input {
   font-size: 30px;
   font-weight: 700;
   margin-left: 8px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Debate: round tabs                                                      */
+/* ---------------------------------------------------------------------- */
+
+.round-tabs-row {
+  padding: 0 clamp(18px, 4vw, 48px) 18px;
+}
+
+.round-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.round-tab {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.round-tab--active {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-2));
+}
+
+.round-tab-label {
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 650;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.round-tab--active .round-tab-label {
+  color: var(--text-0);
+}
+
+.round-tab-input {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-1);
+  color: var(--text-0);
+  font-size: 13px;
+  font-weight: 650;
+  padding: 6px 10px;
+  border-radius: 999px;
+  outline: none;
+  width: 140px;
+}
+
+.round-tab-actions {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding-right: 4px;
+}
+
+.round-tab-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.round-tab-icon:hover {
+  background: var(--bg-3);
+  color: var(--text-0);
+}
+
+.round-tab-icon--danger:hover {
+  color: var(--danger);
+}
+
+.round-tab--add {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.round-tab--add:hover {
+  color: var(--text-0);
+  background: var(--bg-3);
+}
+
+.round-bulk-duration {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  color: var(--text-1);
+  flex-wrap: wrap;
 }

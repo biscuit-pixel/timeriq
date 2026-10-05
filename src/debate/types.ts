@@ -22,6 +22,18 @@ export interface DebateRunState {
   endTimestamp: number | null
 }
 
+/**
+ * A self-contained segment of the debate (e.g. "Opening statements", "Rapid fire") with its own
+ * roster, per-person time budgets, and running state. Switching the active round never touches
+ * another round's data — a round picks up exactly where it was left.
+ */
+export interface Round {
+  id: string
+  name: string
+  debaters: Debater[]
+  run: DebateRunState
+}
+
 export interface DebateSettings {
   discussionName: string
   logoDataUrl: string | null
@@ -31,8 +43,8 @@ export interface DebateSettings {
 }
 
 export interface DebateState {
-  debaters: Debater[]
-  run: DebateRunState
+  rounds: Round[]
+  activeRoundId: string
   settings: DebateSettings
 }
 
