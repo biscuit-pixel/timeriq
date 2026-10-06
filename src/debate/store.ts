@@ -88,6 +88,7 @@ interface DebateStore extends DebateState {
   removeRound: (id: string) => void
   selectRound: (id: string) => void
   updateSettings: (patch: Partial<DebateSettings>) => void
+  loadPreset: (rounds: Round[], settings: DebateSettings) => void
   addThreshold: (t: Omit<WarningThreshold, 'id'>) => void
   updateThreshold: (id: string, patch: Partial<WarningThreshold>) => void
   removeThreshold: (id: string) => void
@@ -356,6 +357,12 @@ export const useDebateStore = create<DebateStore>((set, get) => ({
 
   updateSettings: (patch) => {
     set({ settings: { ...get().settings, ...patch } })
+    persist(get)
+    broadcastState(get)
+  },
+
+  loadPreset: (rounds, settings) => {
+    set({ rounds, activeRoundId: rounds[0].id, settings })
     persist(get)
     broadcastState(get)
   },

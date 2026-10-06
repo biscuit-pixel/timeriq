@@ -34,17 +34,33 @@ export interface Round {
   run: DebateRunState
 }
 
+export interface LowerThirdSettings {
+  showRoundName: boolean
+  showInactiveTimers: boolean
+  customText: string
+}
+
 export interface DebateSettings {
   discussionName: string
   logoDataUrl: string | null
   logoScale: number
   logoPosition: 'top-left' | 'top-right' | 'center'
   warningThresholds: WarningThreshold[]
+  lowerThird: LowerThirdSettings
 }
 
 export interface DebateState {
   rounds: Round[]
   activeRoundId: string
+  settings: DebateSettings
+}
+
+/** A reusable, named template: a full rounds+settings setup saved for reuse across debates (no live countdown state). */
+export interface DebatePreset {
+  id: string
+  name: string
+  savedAt: number
+  rounds: Round[]
   settings: DebateSettings
 }
 

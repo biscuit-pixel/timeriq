@@ -11,6 +11,14 @@ const BarIcon = () => (
     <path d="M3 15h18v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4zm2 1.5v2h3v-2H5zm5 0v2h9v-2h-9z" />
   </svg>
 )
+const GridIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
+    <rect x="3" y="3" width="8" height="8" rx="1.5" />
+    <rect x="13" y="3" width="8" height="8" rx="1.5" />
+    <rect x="3" y="13" width="8" height="8" rx="1.5" />
+    <rect x="13" y="13" width="8" height="8" rx="1.5" />
+  </svg>
+)
 
 interface ScreenDetailed {
   availLeft: number
@@ -38,6 +46,10 @@ export function DebateOutputLauncher() {
 
   const openLowerThird = () => {
     window.open('/debate/lower-third', 'timeriq-debate-lower-third', 'width=1600,height=300,menubar=no,toolbar=no,location=no')
+  }
+
+  const openOverview = () => {
+    window.open('/debate/overview', 'timeriq-debate-overview', 'width=1280,height=720,menubar=no,toolbar=no,location=no')
   }
 
   const openOnSecondScreen = async () => {
@@ -73,6 +85,10 @@ export function DebateOutputLauncher() {
       <button className="ctrl-btn ctrl-btn--ghost" onClick={openLowerThird}>
         <BarIcon />
         <span>{t('debate.openLowerThird')}</span>
+      </button>
+      <button className="ctrl-btn ctrl-btn--ghost" onClick={openOverview}>
+        <GridIcon />
+        <span>{t('debate.openOverview')}</span>
       </button>
     </div>
   )

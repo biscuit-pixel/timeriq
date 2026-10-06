@@ -25,23 +25,42 @@ export function DebateLowerThirdPage() {
   const settings = useDebateStore((s) => s.settings)
   const remainingMs = useLiveRemaining(round.run)
   const active = round.debaters[round.run.activeIndex] ?? null
+  const others = active ? round.debaters.filter((d) => d.id !== active.id) : []
 
   const threshold = active ? activeThreshold(remainingMs, settings.warningThresholds) : null
   const accent = threshold?.color ?? visual.accentColor
 
   if (!active) return <div className="lower-third-root" />
 
+  const caption = [settings.discussionName, settings.lowerThird.showRoundName ? round.name : null, settings.lowerThird.customText]
+    .filter(Boolean)
+    .join(' · ')
+
   return (
     <div className="lower-third-root" data-theme={visual.theme}>
-      <div className="lower-third-bar" style={{ '--accent': accent } as React.CSSProperties} key={active.id}>
-        <DebaterAvatar name={active.name} photoDataUrl={active.photoDataUrl} size={64} className="lower-third-avatar" />
-        <div className="lower-third-text">
-          {settings.discussionName && <div className="lower-third-discussion">{settings.discussionName}</div>}
-          <div className="lower-third-name">{active.name}</div>
+      <div className="lower-third-stack">
+        <div className="lower-third-bar" style={{ '--accent': accent } as React.CSSProperties} key={active.id}>
+          <DebaterAvatar name={active.name} photoDataUrl={active.photoDataUrl} size={64} className="lower-third-avatar" />
+          <div className="lower-third-text">
+            {caption && <div className="lower-third-discussion">{caption}</div>}
+            <div className="lower-third-name">{active.name}</div>
+          </div>
+          <div className="lower-third-time" style={{ color: accent }}>
+            {formatDuration(remainingMs)}
+          </div>
         </div>
-        <div className="lower-third-time" style={{ color: accent }}>
-          {formatDuration(remainingMs)}
-        </div>
+
+        {settings.lowerThird.showInactiveTimers && others.length > 0 && (
+          <div className="lower-third-inactive-row">
+            {others.map((d) => (
+              <div className="lower-third-inactive-chip" key={d.id}>
+                <DebaterAvatar name={d.name} photoDataUrl={d.photoDataUrl} size={28} />
+                <span className="lower-third-inactive-name">{d.name}</span>
+                <span className="lower-third-inactive-time">{formatDuration(d.remainingMs)}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

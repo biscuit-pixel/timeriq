@@ -1151,28 +1151,73 @@ input {
 }
 
 .debate-center--in {
-  animation: debate-center-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  position: relative;
+  z-index: 2;
+  animation: debate-center-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.debate-center--in .debate-center-avatar {
+  animation: debate-avatar-ring 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .debate-center--out {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
-  animation: debate-center-out 0.7s cubic-bezier(0.5, 0, 0.3, 1) both;
+  animation: debate-center-out 0.55s cubic-bezier(0.6, 0, 1, 0.4) both;
+}
+
+.debate-switch-flash {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 55%, transparent) 0%, transparent 65%);
+  mix-blend-mode: screen;
+  animation: debate-switch-flash 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes debate-switch-flash {
+  from {
+    opacity: 0.9;
+    transform: scale(0.25);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes debate-avatar-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 80%, transparent), 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+  40% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent), 0 0 0 4px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 26px color-mix(in srgb, var(--accent) 0%, transparent), 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent);
+  }
 }
 
 @keyframes debate-center-in {
-  from {
+  0% {
     opacity: 0;
-    transform: scale(0.82) translateY(16px);
-    filter: blur(6px);
+    transform: scale(0.5) translateY(46px) rotate(-4deg);
+    filter: blur(16px);
   }
-  60% {
+  55% {
+    opacity: 1;
+    transform: scale(1.07) translateY(-8px) rotate(1.5deg);
     filter: blur(0);
   }
-  to {
+  78% {
+    transform: scale(0.97) translateY(2px) rotate(-0.5deg);
+  }
+  100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0) rotate(0deg);
     filter: blur(0);
   }
 }
@@ -1180,13 +1225,13 @@ input {
 @keyframes debate-center-out {
   from {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0) rotate(0deg);
     filter: blur(0);
   }
   to {
     opacity: 0;
-    transform: scale(0.8) translateY(-14px);
-    filter: blur(6px);
+    transform: scale(0.65) translateY(26px) rotate(3deg);
+    filter: blur(12px);
   }
 }
 
@@ -1469,4 +1514,201 @@ input {
   font-size: 12.5px;
   color: var(--text-1);
   flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Debate: overview (scoreboard) screen                                    */
+/* ---------------------------------------------------------------------- */
+
+.debate-overview-root {
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+.debate-overview-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: clamp(28px, 5vw, 60px) clamp(20px, 5vw, 60px);
+  text-align: center;
+}
+
+.debate-overview-heading {
+  margin: 6px 0 clamp(20px, 3vw, 36px);
+  font-size: clamp(22px, 3.4vw, 40px);
+  font-weight: 750;
+  color: var(--text-0);
+  letter-spacing: -0.01em;
+}
+
+.debate-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: clamp(12px, 2vw, 22px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.debate-overview-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(16px, 2vw, 26px) 14px;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--bg-1) 75%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.debate-overview-card--active {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent), 0 20px 40px -22px color-mix(in srgb, var(--accent) 70%, transparent);
+  transform: translateY(-4px);
+}
+
+.debate-overview-live-dot {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+  animation: debate-live-dot-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes debate-live-dot-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 0%, transparent);
+  }
+}
+
+.debate-overview-name {
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 650;
+  color: var(--text-0);
+  text-align: center;
+}
+
+.debate-overview-time {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  transition: color 0.6s ease;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Debate: lower third inactive-timers row                                 */
+/* ---------------------------------------------------------------------- */
+
+.lower-third-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.lower-third-inactive-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lower-third-inactive-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-0) 78%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  font-family: var(--font-ui);
+}
+
+.lower-third-inactive-name {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--text-1);
+}
+
+.lower-third-inactive-time {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-0);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Debate: preset manager                                                  */
+/* ---------------------------------------------------------------------- */
+
+.preset-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preset-save-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.preset-save-row .text-input {
+  flex: 1 1 160px;
+}
+
+.preset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.preset-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+}
+
+.preset-row:hover {
+  background: var(--bg-2);
+}
+
+.preset-row-info {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.preset-row-name {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text-0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preset-row-meta {
+  font-size: 11.5px;
+  color: var(--text-2);
 }

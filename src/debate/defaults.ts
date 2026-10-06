@@ -29,4 +29,9 @@ export const defaultDebateSettings: DebateSettings = {
     { id: uuid(), atMs: 60 * 1000, color: '#f5a623', label: '1 min left', pulse: false },
     { id: uuid(), atMs: 0, color: '#ef4444', label: "Time's up", pulse: true },
   ],
+  lowerThird: {
+    showRoundName: true,
+    showInactiveTimers: false,
+    customText: '',
+  },
 }

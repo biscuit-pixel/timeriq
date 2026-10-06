@@ -77,7 +77,9 @@ A separate tool for panel discussions and debates — switch to it with the **Pr
 - `Space` play/pauses whoever is currently spotlighted (without switching), `Esc` resets their time to the amount you assigned, `←`/`→` switch the spotlight to the previous/next participant.
 - Add a **discussion name** and/or a **logo** (with its own size/position) in settings — shown on the output screen.
 - **Open output window** / **Open on second screen** work exactly like the presentation tool.
-- **Open lower third** opens a small, transparent window showing just the current speaker's name, photo and time — add it as a Browser Source in OBS (or similar) for a livestream overlay; it has no background to key out.
+- **Open lower third** opens a small, transparent window showing just the current speaker's name, photo and time — add it as a Browser Source in OBS (or similar) for a livestream overlay; it has no background to key out. In **Settings → Lower third** you can toggle showing the round name, add custom caption text (e.g. an event hashtag), and show the other participants' times as small chips beneath the main bar.
+- **Open overview** opens a scoreboard-style window listing every participant in the active round at once with their current time, the active one highlighted with a pulsing indicator — handy for a second monitor or projecting between segments.
+- **Presets**, in Settings, save the current rounds, roster and settings as a named, reusable template (every clock resets to full when saved) — load one later to set up a recurring debate format in one click, or delete ones you no longer need.
 
 ## Offline use
 

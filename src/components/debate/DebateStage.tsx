@@ -25,7 +25,7 @@ const logoPositionClass: Record<DebateSettings['logoPosition'], string> = {
   center: 'logo-center',
 }
 
-const EXIT_MS = 700
+const EXIT_MS = 850
 
 function thresholdFor(remainingMs: number, thresholds: WarningThreshold[]) {
   return activeThreshold(remainingMs, thresholds)
@@ -113,7 +113,8 @@ export function DebateStage({ debaters, activeIndex, activeRemainingMs, phase, r
           </div>
         )}
 
-        <div className="debate-center-stack">
+        <div className={`debate-center-stack ${outgoing ? 'debate-center-stack--switching' : ''}`}>
+          {outgoing && <div key={`flash-${active.id}`} className="debate-switch-flash" />}
           {outgoing && (
             <DebateCenterCard
               key={outgoing.id}

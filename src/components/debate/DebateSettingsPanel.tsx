@@ -3,6 +3,7 @@ import { useTranslation } from '../../i18n/useTranslation'
 import { useDebateStore } from '../../debate/store'
 import { fileToResizedDataUrl } from '../../utils/logo'
 import { ThresholdEditor } from '../ThresholdEditor'
+import { PresetManager } from './PresetManager'
 import type { DebateSettings } from '../../debate/types'
 
 export function DebateSettingsPanel() {
@@ -89,6 +90,46 @@ export function DebateSettingsPanel() {
         onUpdate={updateThreshold}
         onRemove={removeThreshold}
       />
+
+      <div className="panel-subheader">
+        <h3>{t('debate.lowerThirdSettings')}</h3>
+      </div>
+      <div className="settings-grid">
+        <div className="field">
+          <label className="checkbox-field">
+            <input
+              type="checkbox"
+              checked={settings.lowerThird.showRoundName}
+              onChange={(e) => updateSettings({ lowerThird: { ...settings.lowerThird, showRoundName: e.target.checked } })}
+            />
+            {t('debate.lowerThirdShowRound')}
+          </label>
+        </div>
+        <div className="field">
+          <label className="checkbox-field">
+            <input
+              type="checkbox"
+              checked={settings.lowerThird.showInactiveTimers}
+              onChange={(e) => updateSettings({ lowerThird: { ...settings.lowerThird, showInactiveTimers: e.target.checked } })}
+            />
+            {t('debate.lowerThirdShowInactive')}
+          </label>
+        </div>
+        <div className="field field--wide">
+          <label>{t('debate.lowerThirdCustomText')}</label>
+          <input
+            className="text-input"
+            placeholder={t('debate.lowerThirdCustomTextPlaceholder')}
+            value={settings.lowerThird.customText}
+            onChange={(e) => updateSettings({ lowerThird: { ...settings.lowerThird, customText: e.target.value } })}
+          />
+        </div>
+      </div>
+
+      <div className="panel-subheader">
+        <h3>{t('debate.presets')}</h3>
+      </div>
+      <PresetManager />
     </section>
   )
 }

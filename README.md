@@ -14,7 +14,7 @@ Made by **møušn**.
 - **Single timer mode** — switch the playlist off for one simple timer
 - **Keyboard-driven duration editing** — ←/→ pick a digit, ↑/↓ change it
 - **Animated particle background** that follows the warning color
-- **Debate timer** — a separate tool (tab) for panel discussions: add participants with name + optional photo, give each their own time bank, spotlight one speaker at a time with a smooth transition, a reusable host Q&A timer kind, multiple independent **rounds** (tabs) with their own roster/times/headline that freeze exactly where you left them when you switch away, and a transparent lower-third window for livestream overlays
+- **Debate timer** — a separate tool (tab) for panel discussions: add participants with name + optional photo, give each their own time bank, spotlight one speaker at a time with a smooth cinematic transition, a reusable host Q&A timer kind, multiple independent **rounds** (tabs) with their own roster/times/headline that freeze exactly where you left them when you switch away, a configurable transparent lower-third window for livestream overlays, a scoreboard-style overview screen, and save/load presets for reusable debate formats
 - **Playlist / queue** — chain multiple timed segments and breaks back to back, reorder by drag-and-drop, jump to any segment
 - **Dual-screen control + output mode** — open a second window (optionally auto-placed on a second monitor via the Window Management API) that mirrors the control panel in real time over `BroadcastChannel`; the operator can drive playback from either window
 - **Dark mode by default**, with a light mode toggle

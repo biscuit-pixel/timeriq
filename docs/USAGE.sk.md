@@ -77,7 +77,9 @@ Samostatný nástroj na panelové diskusie a debaty — prepnete naň záložkam
 - `Medzerník` spustí/pozastaví práve vybraného rečníka (bez zmeny výberu), `Esc` resetuje jeho čas na priradenú hodnotu, `←`/`→` prepnú slovo na predchádzajúceho/ďalšieho účastníka.
 - V nastaveniach pridajte **názov diskusie** a/alebo **logo** (s vlastnou veľkosťou/pozíciou) — zobrazia sa na výstupnej obrazovke.
 - **Otvoriť výstupné okno** / **Otvoriť na druhej obrazovke** fungujú rovnako ako v prezentačnom nástroji.
-- **Otvoriť spodný pruh** otvorí malé priehľadné okno zobrazujúce len meno, fotku a čas aktuálneho rečníka — pridajte ho ako Browser Source v OBS (alebo podobnom nástroji) pre prekrytie pri livestreame; nemá pozadie, takže ho netreba klučovať.
+- **Otvoriť spodný pruh** otvorí malé priehľadné okno zobrazujúce len meno, fotku a čas aktuálneho rečníka — pridajte ho ako Browser Source v OBS (alebo podobnom nástroji) pre prekrytie pri livestreame; nemá pozadie, takže ho netreba klučovať. V **Nastavenia → Spodný pruh** môžete zapnúť zobrazenie názvu kola, pridať vlastný popisný text (napr. hashtag podujatia) a zobraziť časy ostatných účastníkov ako malé bublinky pod hlavným pruhom.
+- **Otvoriť prehľad** otvorí okno v štýle tabule s výsledkami, ktoré zobrazí všetkých účastníkov aktívneho kola naraz s ich aktuálnym časom, aktívny je zvýraznený pulzujúcim indikátorom — hodí sa na druhý monitor alebo premietanie medzi blokmi.
+- **Predvoľby** v Nastaveniach uložia aktuálne kolá, zostavu a nastavenia ako pomenovanú, znovu použiteľnú šablónu (pri uložení sa každý časovač resetuje na plný čas) — neskôr ju načítate a nastavíte opakovaný formát debaty na jedno kliknutie, alebo nepotrebné predvoľby odstránite.
 
 ## Offline používanie
 
