@@ -1,12 +1,22 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "timeriq",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-09-16",
   "observability": {
     "enabled": true
   },
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
-  }
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/ws/*"]
+  },
+  "durable_objects": {
+    "bindings": [
+      { "name": "SESSIONS", "class_name": "SessionRoom" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_classes": ["SessionRoom"] }
+  ]
 }

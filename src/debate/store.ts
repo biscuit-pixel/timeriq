@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { v4 as uuid } from 'uuid'
 import { defaultRounds, defaultDebateSettings, makeDebater, makeRound } from './defaults'
 import { debateSyncChannel, DEBATE_SESSION_ID } from './channel'
+import { installRemoteCalls } from '../session/remote'
 import type { DebateRemoteAction, DebaterKind, DebateSettings, DebateState, Debater, DebateRunState, Round } from './types'
 import type { WarningThreshold } from '../store/types'
 
@@ -406,6 +407,12 @@ export function useActiveRound(): Round {
   return useDebateStore((s) => s.rounds.find((r) => r.id === s.activeRoundId) ?? s.rounds[0])
 }
 
+installRemoteCalls(useDebateStore, 'debate')
+
+export function publishDebateState() {
+  broadcastState(useDebateStore.getState)
+}
+
 debateSyncChannel.subscribe((msg) => {
   if (msg.senderId === DEBATE_SESSION_ID) return
   if (msg.kind === 'state') {
@@ -414,8 +421,15 @@ debateSyncChannel.subscribe((msg) => {
     if (useDebateStore.getState().isControlSource) broadcastState(useDebateStore.getState)
   } else if (msg.kind === 'action') {
     if (useDebateStore.getState().isControlSource) applyRemoteAction(msg.action)
+  } else if (msg.kind === 'call') {
+    if (useDebateStore.getState().isControlSource) applyRemoteCall(msg.name, msg.args)
   }
 })
+
+function applyRemoteCall(name: string, args: unknown[]) {
+  const fn = (useDebateStore.getState() as unknown as Record<string, unknown>)[name]
+  if (typeof fn === 'function' && name !== 'applyRemoteState') (fn as (...a: unknown[]) => unknown)(...args)
+}
 
 function applyRemoteAction(action: DebateRemoteAction) {
   const store = useDebateStore.getState()

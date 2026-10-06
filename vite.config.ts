@@ -4,6 +4,11 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      '/ws': { target: 'ws://localhost:8787', ws: true },
+    },
+  },
   plugins: [
     react(),
     VitePWA({

@@ -1,4 +1,5 @@
 import type { SyncMessage } from './types'
+import { sessionTransport } from '../session/transport'
 
 export const CHANNEL_NAME = 'timeriq-sync-v1'
 export const SESSION_ID = Math.random().toString(36).slice(2)
@@ -6,10 +7,8 @@ export const SESSION_ID = Math.random().toString(36).slice(2)
 type Listener = (msg: SyncMessage) => void
 
 /**
- * Thin wrapper around BroadcastChannel so the control window and output
- * window(s) can stay in sync without a server. Falls back to a no-op if
- * BroadcastChannel isn't available (very old browsers) — the app still
- * works single-window in that case.
+ * Sends state between windows on this computer (BroadcastChannel) and, when a session is active,
+ * between computers (via the session relay). Falls back to a no-op if BroadcastChannel isn't available.
  */
 class SyncChannel {
   private channel: BroadcastChannel | null = null
@@ -22,10 +21,14 @@ class SyncChannel {
         this.listeners.forEach((l) => l(ev.data))
       }
     }
+    sessionTransport.onMessage('timer', (msg) => {
+      this.listeners.forEach((l) => l(msg as SyncMessage))
+    })
   }
 
   send(msg: SyncMessage) {
     this.channel?.postMessage(msg)
+    sessionTransport.send('timer', msg as never)
   }
 
   subscribe(listener: Listener) {

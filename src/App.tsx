@@ -5,6 +5,7 @@ import { DebateControlPage } from './routes/DebateControlPage'
 import { DebateOutputPage } from './routes/DebateOutputPage'
 import { DebateLowerThirdPage } from './routes/DebateLowerThirdPage'
 import { DebateOverviewPage } from './routes/DebateOverviewPage'
+import { JoinPage } from './routes/JoinPage'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/debate/output" element={<DebateOutputPage />} />
         <Route path="/debate/lower-third" element={<DebateLowerThirdPage />} />
         <Route path="/debate/overview" element={<DebateOverviewPage />} />
+        <Route path="/join" element={<JoinPage />} />
       </Routes>
     </BrowserRouter>
   )

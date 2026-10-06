@@ -13,6 +13,7 @@ import { PlaylistEditor } from '../components/PlaylistEditor'
 import { SettingsPanel } from '../components/SettingsPanel'
 import { TimerDisplay } from '../components/TimerDisplay'
 import { TopNav } from '../components/TopNav'
+import { SessionPanel } from '../components/SessionPanel'
 
 export function ControlPage() {
   const { t } = useTranslation()
@@ -33,6 +34,7 @@ export function ControlPage() {
         </div>
         <TopNav />
         <div className="app-header-actions">
+          <SessionPanel />
           <LanguageSwitcher />
           <ThemeToggle />
         </div>

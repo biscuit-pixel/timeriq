@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { v4 as uuid } from 'uuid'
 import { defaultPlaylist, defaultSettings } from './defaults'
 import { syncChannel, SESSION_ID } from './channel'
+import { installRemoteCalls } from '../session/remote'
 import type {
   ItemType,
   PlaylistItem,
@@ -319,6 +320,12 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   },
 }))
 
+installRemoteCalls(useTimerStore, 'timer')
+
+export function publishTimerState() {
+  broadcastState(useTimerStore.getState)
+}
+
 // Keep other windows (output / secondary control views) in sync.
 syncChannel.subscribe((msg) => {
   if (msg.senderId === SESSION_ID) return
@@ -328,8 +335,15 @@ syncChannel.subscribe((msg) => {
     if (useTimerStore.getState().isControlSource) broadcastState(useTimerStore.getState)
   } else if (msg.kind === 'action') {
     if (useTimerStore.getState().isControlSource) applyRemoteAction(msg.action)
+  } else if (msg.kind === 'call') {
+    if (useTimerStore.getState().isControlSource) applyRemoteCall(msg.name, msg.args)
   }
 })
+
+function applyRemoteCall(name: string, args: unknown[]) {
+  const fn = (useTimerStore.getState() as unknown as Record<string, unknown>)[name]
+  if (typeof fn === 'function' && name !== 'applyRemoteState') (fn as (...a: unknown[]) => unknown)(...args)
+}
 
 function applyRemoteAction(action: RemoteAction) {
   const store = useTimerStore.getState()

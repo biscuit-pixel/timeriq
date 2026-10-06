@@ -1712,3 +1712,145 @@ input {
   font-size: 11.5px;
   color: var(--text-2);
 }
+
+/* ---------------------------------------------------------------------- */
+/* Sessions: header popover and join page                                  */
+/* ---------------------------------------------------------------------- */
+
+.session-root {
+  position: relative;
+}
+
+.session-trigger {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.session-trigger--live {
+  border-color: color-mix(in srgb, var(--success) 60%, transparent);
+  color: var(--success);
+}
+
+.session-popover {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 50;
+  width: min(330px, calc(100vw - 36px));
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.session-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.session-popover-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.session-status {
+  font-size: 11.5px;
+  font-weight: 650;
+  color: var(--text-2);
+  text-align: right;
+}
+
+.session-status--connected {
+  color: var(--success);
+}
+
+.session-status--rejected,
+.session-status--disconnected {
+  color: var(--danger);
+}
+
+.session-code {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg-2));
+  color: var(--text-0);
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+}
+
+.session-code-hint {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+}
+
+.session-join-link {
+  font-size: 12.5px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.join-main {
+  padding: 0 clamp(18px, 4vw, 48px) 48px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.join-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.join-code-input {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 14px;
+}
+
+.join-target-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.join-target {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text-1);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.join-target--active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-2));
+  color: var(--text-0);
+}

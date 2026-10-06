@@ -68,6 +68,7 @@ export type DebateSyncMessage =
   | { kind: 'state'; state: DebateState; senderId: string }
   | { kind: 'request-state'; senderId: string }
   | { kind: 'action'; action: DebateRemoteAction; senderId: string }
+  | { kind: 'call'; name: string; args: unknown[]; senderId: string }
 
 export type DebateRemoteAction =
   | { type: 'toggle' }

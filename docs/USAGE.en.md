@@ -81,6 +81,18 @@ A separate tool for panel discussions and debates — switch to it with the **Pr
 - **Open overview** opens a scoreboard-style window listing every participant in the active round at once with their current time, the active one highlighted with a pulsing indicator — handy for a second monitor or projecting between segments.
 - **Presets**, in Settings, save the current rounds, roster and settings as a named, reusable template (every clock resets to full when saved) — load one later to set up a recurring debate format in one click, or delete ones you no longer need.
 
+## Sessions — use two computers
+
+Run the output on one computer (for example the one plugged into the projector) and the control panel on another.
+
+1. On the **control** computer, click **Session** in the top bar, then **Start hosting**. You get a six-letter code.
+2. On the **other** computer, open the app's address, go to **Join a session** (or open `/join` directly), type the code and choose what this computer should be:
+   - **Output screen** (presentation or debate) — shows the display only, like a second window.
+   - **Remote control** (presentation or debate) — controls the host from here; every button, shortcut and playlist edit is sent to the host computer.
+3. Keep the host page open while the session runs. Stopping the session or closing the host page ends it; the output screens show the last state they received.
+
+Notes: anyone with the code can view and control the session, so only share it with the people who need it. Presentations and debates are not stored on the server; the host's state passes through the relay while the session is live.
+
 ## Offline use
 
 timeriq is a Progressive Web App. After your first visit, it keeps working with no internet connection. To install it as a standalone app: use your browser's "Install app" / "Add to Home screen" option (usually in the address bar or browser menu).

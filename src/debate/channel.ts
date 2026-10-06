@@ -1,4 +1,5 @@
 import type { DebateSyncMessage } from './types'
+import { sessionTransport } from '../session/transport'
 
 export const DEBATE_CHANNEL_NAME = 'timeriq-debate-sync-v1'
 export const DEBATE_SESSION_ID = Math.random().toString(36).slice(2)
@@ -16,10 +17,14 @@ class DebateSyncChannel {
         this.listeners.forEach((l) => l(ev.data))
       }
     }
+    sessionTransport.onMessage('debate', (msg) => {
+      this.listeners.forEach((l) => l(msg as DebateSyncMessage))
+    })
   }
 
   send(msg: DebateSyncMessage) {
     this.channel?.postMessage(msg)
+    sessionTransport.send('debate', msg as never)
   }
 
   subscribe(listener: Listener) {

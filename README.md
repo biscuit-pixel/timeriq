@@ -46,9 +46,13 @@ Everything is client-side and stored in the browser's `localStorage` — there i
 
 - Vite + React + TypeScript
 - Zustand for state, persisted to `localStorage`
-- `BroadcastChannel` for control ⇄ output window sync (no server)
+- `BroadcastChannel` for control ⇄ output window sync on one computer; a small Cloudflare Worker relay for sessions across computers
 - `vite-plugin-pwa` for offline support / installability
 - Hand-written CSS design system (no UI framework)
+
+## Sessions (multi-computer)
+
+A Cloudflare Worker with a Durable Object per session code relays sync messages between the host computer and joined computers (`worker/index.ts`). Local windows still use BroadcastChannel. In development run `npx wrangler dev --port 8787` next to `npm run dev`; Vite proxies `/ws` to it.
 
 ## Deployment
 

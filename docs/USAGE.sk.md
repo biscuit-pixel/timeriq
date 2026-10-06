@@ -81,6 +81,18 @@ Samostatný nástroj na panelové diskusie a debaty — prepnete naň záložkam
 - **Otvoriť prehľad** otvorí okno v štýle tabule s výsledkami, ktoré zobrazí všetkých účastníkov aktívneho kola naraz s ich aktuálnym časom, aktívny je zvýraznený pulzujúcim indikátorom — hodí sa na druhý monitor alebo premietanie medzi blokmi.
 - **Predvoľby** v Nastaveniach uložia aktuálne kolá, zostavu a nastavenia ako pomenovanú, znovu použiteľnú šablónu (pri uložení sa každý časovač resetuje na plný čas) — neskôr ju načítate a nastavíte opakovaný formát debaty na jedno kliknutie, alebo nepotrebné predvoľby odstránite.
 
+## Relácie — dva počítače
+
+Výstup môžete mať na jednom počítači (napr. ten pripojený k projektoru) a ovládací panel na druhom.
+
+1. Na **ovládacom** počítači kliknite navrchu na **Relácia** a potom na **Spustiť hostenie**. Dostanete šesťmiestny kód.
+2. Na **druhom** počítači otvorte adresu aplikácie, prejdite na **Pripojiť sa k relácii** (alebo otvorte priamo `/join`), zadajte kód a vyberte, čím má tento počítač byť:
+   - **Výstupná obrazovka** (prezentačný alebo debatný časovač) — zobrazuje len výstup, ako druhé okno.
+   - **Vzdialené ovládanie** (prezentačný alebo debatný časovač) — ovláda hostiteľa; každé tlačidlo, skratka aj úprava playlistu sa pošle na hostiteľský počítač.
+3. Stránku hostiteľa nechajte otvorenú, kým relácia beží. Ukončením relácie alebo zatvorením stránky hostiteľa sa relácia skončí; výstupné obrazovky zostanú zobrazovať posledný prijatý stav.
+
+Poznámka: každý, kto pozná kód, môže reláciu sledovať aj ovládať, takže ho zdieľajte iba s ľuďmi, ktorí ho potrebujú. Prezentácie ani debaty sa na serveri neukladajú; stav hostiteľa prechádza cez prepojovací server iba počas trvania relácie.
+
 ## Offline používanie
 
 timeriq je Progresívna webová aplikácia (PWA). Po prvej návšteve funguje aj bez internetového pripojenia. Ak si ju chcete nainštalovať ako samostatnú aplikáciu, použite v prehliadači voľbu „Nainštalovať aplikáciu" / „Pridať na plochu" (zvyčajne v adresnom riadku alebo v menu prehliadača).

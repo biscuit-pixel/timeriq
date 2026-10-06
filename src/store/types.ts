@@ -71,6 +71,7 @@ export type SyncMessage =
   | { kind: 'state'; state: TimerIQState; senderId: string }
   | { kind: 'request-state'; senderId: string }
   | { kind: 'action'; action: RemoteAction; senderId: string }
+  | { kind: 'call'; name: string; args: unknown[]; senderId: string }
 
 export type RemoteAction =
   | { type: 'toggle' }

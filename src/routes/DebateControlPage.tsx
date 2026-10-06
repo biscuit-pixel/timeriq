@@ -13,6 +13,7 @@ import { RoundTabs } from '../components/debate/RoundTabs'
 import { LanguageSwitcher } from '../components/LanguageSwitcher'
 import { ThemeToggle } from '../components/ThemeToggle'
 import { TopNav } from '../components/TopNav'
+import { SessionPanel } from '../components/SessionPanel'
 
 export function DebateControlPage() {
   const { t } = useTranslation()
@@ -33,6 +34,7 @@ export function DebateControlPage() {
         </div>
         <TopNav />
         <div className="app-header-actions">
+          <SessionPanel />
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
