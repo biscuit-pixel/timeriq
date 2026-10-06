@@ -17,6 +17,6 @@
     ]
   },
   "migrations": [
-    { "tag": "v1", "new_classes": ["SessionRoom"] }
+    { "tag": "v1", "new_sqlite_classes": ["SessionRoom"] }
   ]
 }
